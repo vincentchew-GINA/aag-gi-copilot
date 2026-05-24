@@ -1,5 +1,1 @@
-{
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" }
-  ]
-}
+{"functions":{"api/chat.js":{"memory":512}},"rewrites":[{"source":"/api/chat","destination":"/api/chat.js"}]} 
