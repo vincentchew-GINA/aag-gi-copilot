@@ -336,7 +336,7 @@ async function send(){
   try{
     const r=await fetch(API_URL,{
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':'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','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+     headers:{'Content-Type':'application/json','x-api-key':'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','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
       body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYS,messages:hist})
     });
     const d=await r.json();
