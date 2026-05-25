@@ -391,23 +391,40 @@ function addTyping(){
 }
 
 function fmt(t){
-  // Parse markdown tables first
-  t=t.replace(/(?:^|
-)((?:\|.+\|
-?)+)/gm,(match,tableBlock)=>{
-    const rows=tableBlock.trim().split('
-').filter(r=>r.trim());
-    if(rows.length<2)return match;
-    let html='<table>';
-    rows.forEach((row,i)=>{
-      if(/^\|[-:\s|]+$/.test(row))return; // skip separator
-      const cells=row.split('|').filter((_,ci)=>ci>0&&ci<row.split('|').length-1);
-      if(i===0){
-        html+='<tr>'+cells.map(cell=>'<th>'+cell.trim().replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</th>').join('')+'</tr>';
-      } else {
-        html+='<tr>'+cells.map(cell=>'<td>'+cell.trim().replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</td>').join('')+'</tr>';
+    // Parse markdown tables - line by line approach
+  const lines0=t.split('\n');
+  let tableOut=[],inTable=false,tableLines=[];
+  for(let i=0;i<lines0.length;i++){
+    const l=lines0[i];
+    const isTableRow=l.trim().startsWith('|')&&l.trim().endsWith('|');
+    const isSep=/^\s*\|[-:\s|]+\|\s*$/.test(l);
+    if(isTableRow||isSep){
+      inTable=true;tableLines.push(l);
+    } else {
+      if(inTable&&tableLines.length>0){
+        let th='<table>';let isHead=true;
+        tableLines.forEach(tl=>{
+          if(/^\s*\|[-:\s|]+\|\s*$/.test(tl)){isHead=false;return;}
+          const cells=tl.split('|').slice(1,-1);
+          if(isHead){th+='<tr>'+cells.map(cl=>'<th>'+cl.trim().replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</th>').join('')+'</tr>';isHead=false;}
+          else{th+='<tr>'+cells.map(cl=>'<td>'+cl.trim().replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</td>').join('')+'</tr>';}
+        });
+        th+='</table>';tableOut.push(th);tableLines=[];inTable=false;
       }
+      tableOut.push(l);
+    }
+  }
+  if(tableLines.length>0){
+    let th='<table>';let isHead=true;
+    tableLines.forEach(tl=>{
+      if(/^\s*\|[-:\s|]+\|\s*$/.test(tl)){isHead=false;return;}
+      const cells=tl.split('|').slice(1,-1);
+      if(isHead){th+='<tr>'+cells.map(cl=>'<th>'+cl.trim().replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</th>').join('')+'</tr>';isHead=false;}
+      else{th+='<tr>'+cells.map(cl=>'<td>'+cl.trim().replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</td>').join('')+'</tr>';}
     });
+    th+='</table>';tableOut.push(th);
+  }
+  t=tableOut.join('\n');
     html+='</table>';
     return '
 '+html+'
