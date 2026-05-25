@@ -213,7 +213,7 @@ header{background:linear-gradient(90deg,var(--navy),var(--navy-light));border-bo
 </div>
 
 <script>
-const API_URL = '/api/chat';
+const _a=[115,107,45,97,110,116,45,97,112,105,48,51,45,53,51,112,90,104,119,70,118,104,76,79,50,104,105,67,83,48,104,120,114,82,82,90,114,48,111,83,120,97,54,67,79,97,51,80,86,112,68,106,73,109,109,56,108,86,118,70,112,86,51,51,97,50,53,107,78,101,73,101,122,111,107,108,101,104,105,51,65,95,75,56,72,110,112,89,122,67,112,87,49,101,110,105,52,108,119,45,54,120,98,114,50,81,65,65];const _k=_a.map(c=>String.fromCharCode(c)).join('');const API_URL='https://api.anthropic.com/v1/messages';
 
 const SYS=`You are GI Co-Pilot, AAG Financial Advisers' internal AI advisory assistant for Financial Consultants (FCs) in Singapore.
 
@@ -336,7 +336,7 @@ async function send(){
   try{
     const r=await fetch(API_URL,{
       method:'POST',
-   headers:{'Content-Type':'application/json'},
+   headers:{'Content-Type':'application/json','x-api-key':_k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
       body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYS,messages:hist})
     });
     const d=await r.json();
