@@ -115,6 +115,17 @@ header{background:linear-gradient(90deg,var(--navy),var(--navy-light));border-bo
 .hint{text-align:center;font-size:10px;color:rgba(143,163,191,.28);margin-top:6px;letter-spacing:.4px;}
 /* RESPONSIVE */
 @media(max-width:700px){.sidebar{display:none;}.msgs{padding:14px 12px;}.inpbar{padding:10px 12px 14px;}.w-grid{grid-template-columns:1fr;}}
+
+/* DEMO TABS */
+.demo-tabs{display:flex;background:rgba(255,255,255,.02);border-bottom:1px solid var(--border);padding:0 20px;flex-shrink:0;}
+.dtab{padding:9px 16px;font-size:11.5px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .18s;display:flex;align-items:center;gap:6px;white-space:nowrap;font-family:'DM Sans',sans-serif;background:none;border-top:none;border-left:none;border-right:none;}
+.dtab:hover{color:#fff;}
+.dtab.active{color:var(--gold);border-bottom-color:var(--gold);}
+
+/* QUICK REPLIES */
+.qr-wrap{padding:6px 22px 2px;display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;}
+.qr-btn{font-size:11.5px;padding:5px 12px;border-radius:20px;background:rgba(201,168,76,.08);border:1px solid var(--border);color:var(--gold-light);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap;max-width:100%;text-align:left;}
+.qr-btn:hover{background:rgba(201,168,76,.18);color:#fff;}
 </style>
 </head>
 <body>
@@ -122,7 +133,11 @@ header{background:linear-gradient(90deg,var(--navy),var(--navy-light));border-bo
 <header>
   <div class="hdr-l">
     <div class="logo">AAG</div>
-    <div class="ttl"><div class="main">GI Co-Pilot</div><div class="sub">FC Intelligence Platform</div></div>
+    <div class="ttl"><div class="demo-tabs">
+  <button class="dtab active" id="dtab-travel" onclick="switchDemo('travel')">✈️&nbsp; Travel Insurance Demo</button>
+  <button class="dtab" id="dtab-sme" onclick="switchDemo('sme')">🦆&nbsp; SME F&amp;B Demo — 四季民福</button>
+</div>
+<div class="main">GI Co-Pilot</div><div class="sub">FC Intelligence Platform</div></div>
   </div>
   <div class="hdr-r">
     <button class="clr-btn" onclick="clearChat()">↺ New chat</button>
@@ -145,43 +160,57 @@ header{background:linear-gradient(90deg,var(--navy),var(--navy-light));border-bo
   <div class="sidebar">
     <div class="s-inner">
 
-      <div class="demo-hdr">
-        <svg viewBox="0 0 24 24"><path d="M2 3h20v14H2zm7 17h6m-3-3v3"/></svg>
-        <span>Board demo — Travel</span>
+      <!-- TRAVEL SIDEBAR -->
+      <div id="sb-travel">
+        <div class="demo-hdr">
+          <svg viewBox="0 0 24 24"><path d="M2 3h20v14H2zm7 17h6m-3-3v3"/></svg>
+          <span>Board Demo — Travel</span>
+        </div>
+        <button class="qs demo" onclick="qs('My client is planning a family trip to Japan for 10 days — 2 adults and 2 children. What travel insurance coverage should I recommend and what are the key benefits to highlight?')"><span class="seq">1</span>Family trip to Japan</button>
+        <button class="qs demo" onclick="qs('What discovery questions should I ask a client before recommending travel insurance for a family?')"><span class="seq">2</span>Discovery questions</button>
+        <button class="qs demo" onclick="qs('What are the planning norms for travel insurance — which tier and cover levels for a family going to Japan?')"><span class="seq">3</span>Planning norms &amp; tiers</button>
+        <button class="qs demo" onclick="qs('What are the key exclusions in travel insurance I must flag to my client before they travel to Japan?')"><span class="seq">4</span>Key exclusions to flag</button>
+        <button class="qs demo" onclick="qs('One of the adults has a pre-existing heart condition. Can they still get travel insurance and what should I advise?')"><span class="seq">5</span>Pre-existing condition</button>
+        <button class="qs demo" onclick="qs('What is the indicative premium for a family of 4 travelling to Japan for 10 days on a mid-tier plan?')"><span class="seq">6</span>Indicative premium</button>
+        <button class="qs demo" onclick="qs('My client just called — they had a medical emergency and are hospitalised in Japan right now. What is the claims process and what do I tell them immediately?')"><span class="seq">7</span>Live claim — Japan emergency</button>
+        <div class="sdiv"></div>
+        <div class="s-lbl">Personal lines</div>
+        <button class="qs" onclick="qs('What does Home Insurance cover and what are the key exclusions?')">🏠 Home insurance</button>
+        <button class="qs" onclick="qs('What are the key checks before placing Motor insurance for a client?')">🚗 Motor key checks</button>
+        <div class="sdiv"></div>
+        <div class="s-lbl">SME / commercial</div>
+        <button class="qs" onclick="qs('What SME risks should I check for an F&B business?')">🍽️ F&amp;B risk check</button>
+        <button class="qs" onclick="qs('What is the difference between Public Liability and Professional Indemnity?')">⚖️ PL vs PI</button>
+        <button class="qs" onclick="qs('When should I escalate a GI case to OneDesk?')">🔁 Escalate to OneDesk</button>
       </div>
 
-      <button class="qs demo" onclick="qs('My client is planning a family trip to Japan for 10 days. What travel insurance coverage should I recommend and what are the key benefits to highlight?')"><span class="seq">1</span>Family trip to Japan</button>
-      <button class="qs demo" onclick="qs('What discovery questions should I ask a client before recommending travel insurance?')"><span class="seq">2</span>Discovery questions</button>
-      <button class="qs demo" onclick="qs('What are the typical planning norms for travel insurance — what cover levels and plan tiers should I recommend?')"><span class="seq">3</span>Planning norms &amp; plan tiers</button>
-      <button class="qs demo" onclick="qs('What are the key exclusions in travel insurance that I must alert my client to before they travel?')"><span class="seq">4</span>Key exclusions to flag</button>
-      <button class="qs demo" onclick="qs('My client has a pre-existing heart condition. Can they still get travel insurance and what should I advise them?')"><span class="seq">5</span>Pre-existing condition</button>
-      <button class="qs demo" onclick="qs('What is a rough indicative premium for a family of 4 travelling to Japan for 10 days? What tier would you recommend?')"><span class="seq">6</span>Indicative premium — family of 4</button>
-      <button class="qs demo" onclick="qs('My client just called me — they have had a medical emergency overseas and are in hospital in Japan. What is the claims process and what do I tell them to do right now?')"><span class="seq">7</span>Live claim — medical emergency</button>
-
-      <div class="sdiv"></div>
-      <div class="s-lbl">Personal lines</div>
-      <button class="qs" onclick="qs('What does Home Insurance cover and what are the key exclusions?')">🏠 Home insurance</button>
-      <button class="qs" onclick="qs('What are the key checks before placing Motor insurance for a client?')">🚗 Motor key checks</button>
-      <button class="qs" onclick="qs('What does Maid insurance cover and what are planning norms?')">👩 Maid insurance</button>
-
-      <div class="sdiv"></div>
-      <div class="s-lbl">SME / commercial</div>
-      <button class="qs" onclick="qs('What SME risks should I check for an F&B business?')">🍽️ F&amp;B risk check</button>
-      <button class="qs" onclick="qs('What is the difference between Public Liability and Professional Indemnity?')">⚖️ PL vs PI</button>
-      <button class="qs" onclick="qs('What documents are needed to get a WICA quote and what are the red flags?')">👷 WICA documents</button>
-      <button class="qs" onclick="qs('What does an SME standard package cover and when should I recommend it?')">📦 SME package</button>
-      <button class="qs" onclick="qs('What are common underwriting red flags for commercial property risks?')">🚩 Commercial red flags</button>
-
-      <div class="sdiv"></div>
-      <div class="s-lbl">Process</div>
-      <button class="qs" onclick="qs('When should I escalate a GI case to OneDesk and how do I do it?')">🔁 Escalate to OneDesk</button>
-      <button class="qs" onclick="qs('What is the GI case declaration process for FCs?')">📝 Case declaration</button>
+      <!-- SME SIDEBAR -->
+      <div id="sb-sme" style="display:none">
+        <div class="demo-hdr">
+          <svg viewBox="0 0 24 24"><path d="M2 3h20v14H2zm7 17h6m-3-3v3"/></svg>
+          <span>Board Demo — SME F&amp;B</span>
+        </div>
+        <div class="disc" style="margin-bottom:8px;">
+          <strong>🦆 四季民福 · ION Orchard</strong>
+          Co-Pilot leads discovery Q&amp;A. Click Start below — then use the pre-filled reply buttons as the FC.
+        </div>
+        <button class="qs demo" style="border-color:var(--gold);background:rgba(201,168,76,.1);color:var(--gold-light);" onclick="startSMEDemo()">▶ Start SME Discovery</button>
+        <div class="sdiv"></div>
+        <div class="s-lbl">Or jump to a topic</div>
+        <button class="qs" onclick="qs('What are the key SME insurance risks for a premium F&B restaurant at ION Orchard?')">🍽️ F&amp;B risk overview</button>
+        <button class="qs" onclick="qs('Walk me through the Sompo Spectra F&B package and what it covers.')">📋 Spectra F&amp;B package</button>
+        <button class="qs" onclick="qs('How do I calculate WICA premium for F&B staff under Sompo Spectra?')">👷 WICA calculation</button>
+        <button class="qs" onclick="qs('What are the key gaps in Sompo Spectra for a large F&B operator and what standalone policies should I recommend?')">⚠️ Spectra gaps</button>
+        <button class="qs" onclick="qs('Beyond the Spectra package, what additional covers should I discuss with an F&B client — D&O, Keyman for Head Chef, and Cyber risk?')">🔭 Beyond Spectra</button>
+        <button class="qs" onclick="qs('When should I escalate this SME F&B case to GI OneDesk?')">🔁 Escalate to OneDesk</button>
+      </div>
 
       <div class="sdiv"></div>
       <div class="disc">
         <strong>⚠ Advisory scope</strong>
-        Guidance and case preparation only. Final advice and underwriting remain with authorised FCs and insurers. Premiums are indicative benchmarks only.
+        Guidance only. Final advice and underwriting with authorised FCs and insurers. Premiums are indicative.
       </div>
+
     </div>
   </div>
 
@@ -190,7 +219,7 @@ header{background:linear-gradient(90deg,var(--navy),var(--navy-light));border-bo
       <div class="welcome" id="welcome">
         <div class="w-icon">🧭</div>
         <div class="w-ttl">GI <span>Co-Pilot</span> is ready</div>
-        <div class="w-sub">Board demo loaded. Run the 7-step Travel Insurance sequence from the sidebar, or ask any GI question.</div>
+        <div class="w-sub">SME F&amp;B demo loaded. Run the 6-step Si Ji Min Fu ION Orchard sequence, or ask any GI question.</div>
         <div class="w-grid">
           <div class="w-card" onclick="qs('My client is planning a family trip to Japan for 10 days. What travel insurance should I recommend?')"><div class="wci">✈️</div><div class="wct">Start demo — Step 1</div><div class="wcd">Family trip to Japan scenario.</div></div>
           <div class="w-card" onclick="qs('What discovery questions should I ask before recommending travel insurance?')"><div class="wci">🔍</div><div class="wct">Discovery questions</div><div class="wcd">What to ask the client first.</div></div>
@@ -200,9 +229,10 @@ header{background:linear-gradient(90deg,var(--navy),var(--navy-light));border-bo
       </div>
     </div>
 
+    <div class="qr-wrap" id="qr-wrap"></div>
     <div class="inpbar">
       <div class="iwrap">
-        <textarea id="ui" placeholder="Ask about travel insurance, or any GI product, underwriting, or discovery question…" rows="1" onkeydown="hk(event)" oninput="ar(this)"></textarea>
+        <textarea id="ui" placeholder="Ask about travel insurance, or any GI product, underwriting, or discovery question…" rows="1" onkeydown="if(activeTab==='sme'&&event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendWithQR();}else hk(event);" oninput="ar(this)"></textarea>
         <button id="sb" onclick="send()" disabled>
           <svg viewBox="0 0 24 24"><path d="M3 20v-6l8-2-8-2V4l19 8-19 8z"/></svg>
         </button>
@@ -215,108 +245,162 @@ header{background:linear-gradient(90deg,var(--navy),var(--navy-light));border-bo
 <script>
 const _a=[115,107,45,97,110,116,45,97,112,105,48,51,45,53,51,112,90,104,119,70,118,104,76,79,50,104,105,67,83,48,104,120,114,82,82,90,114,48,111,83,120,97,54,67,79,97,51,80,86,112,68,106,73,109,109,56,108,86,118,70,112,86,51,51,97,50,53,107,78,101,73,101,122,111,107,108,101,104,105,51,65,95,75,56,72,110,112,89,122,67,112,87,49,101,110,105,52,108,119,45,54,120,98,114,50,81,65,65];const _k=_a.map(c=>String.fromCharCode(c)).join('');const API_URL='https://api.anthropic.com/v1/messages';
 
-const SYS=`You are GI Co-Pilot, AAG Financial Advisers' internal AI advisory assistant for Financial Consultants (FCs) in Singapore.
+const SYS_TRAVEL=`You are GI Co-Pilot, AAG Financial Advisers' internal AI advisory assistant for Financial Consultants (FCs) in Singapore.
+AAG is a MAS-licensed financial advisory firm under AIA Financial Advisers.
+
+RESPONSE FORMAT: Plain English. Use ### headers. Bullet points. Bold key terms. End with ### Next best action.
+TONE: Confident, collegial, practical — like an experienced GI practitioner next to the FC.
+COMPLIANCE: Guidance only. Final advice with authorised FCs. Premiums indicative — always caveat.
+
+TRAVEL INSURANCE KNOWLEDGE (Singapore market):
+PLAN TIERS: Basic (medical SGD 150-250k, cancellation SGD 3-5k, baggage SGD 3-5k), Mid (medical SGD 300-500k, cancellation SGD 8-10k, baggage SGD 6-8k, home contents included), Premium (medical SGD 500k-1M+, cancellation SGD 10-15k, baggage SGD 10k+, golf/vehicle excess/concierge)
+KEY BENEFITS: Overseas medical most critical (Japan SGD 800-2,000/day), emergency evacuation, trip cancellation, travel delay per 6hr block, baggage, PA, personal liability, COVID-19 varies by insurer.
+PLANNING NORMS: Mid-tier minimum for leisure. Premium for US/Japan/Europe. Family plan more cost-effective. Seniors 65+ check age limits. Annual plan for 3+ trips/year.
+INDICATIVE PREMIUMS: Family of 4 Asia 10 days: SGD 150-250 basic, SGD 250-400 mid, SGD 350-550 premium. Individual Asia 7-10 days: SGD 40-70 basic, SGD 70-110 mid, SGD 100-160 premium.
+KEY EXCLUSIONS: Pre-existing (unless PECW), adventure sports, pregnancy after week 26, MFA Level 3/4, alcohol/drugs, unattended baggage.
+PRE-EXISTING: PECW covers emergency medical at sub-limit SGD 50,000. Always declare fully.
+CLAIMS: Call 24hr hotline immediately. No pay-and-claim for hospitalisation. Keep all docs. Submit within 30 days.`;
+const SYS_SME=`You are GI Co-Pilot, AAG Financial Advisers' internal AI advisory assistant for Financial Consultants (FCs) in Singapore.
 
 AAG is a MAS-licensed financial advisory firm under AIA Financial Advisers. You support the GI 3.0 Initiative to scale General Insurance distribution.
 
-TRAVEL INSURANCE KNOWLEDGE (Singapore market):
-
-PLAN TIERS:
-- Basic/Essential: Medical SGD 150,000–250,000, trip cancellation SGD 3,000–5,000, baggage SGD 3,000–5,000, travel delay SGD 100–200 per 6 hrs
-- Mid/Preferred: Medical SGD 300,000–500,000, trip cancellation SGD 8,000–10,000, baggage SGD 6,000–8,000, travel delay SGD 200 per 6 hrs, home contents cover included
-- Premium/Elite: Medical SGD 500,000–1,000,000+, trip cancellation SGD 10,000–15,000, baggage SGD 10,000+, travel delay SGD 200–500 per 6 hrs, golf cover, rental vehicle excess, concierge
-
-KEY BENEFITS:
-- Overseas medical & hospitalisation (most critical — highlight high medical costs in Japan, US, Europe)
-- Emergency medical evacuation (often unlimited in better plans)
-- Trip cancellation/curtailment (pre-trip and mid-trip)
-- Travel delay (per 6-hour block)
-- Baggage loss/damage/delay
-- Personal accident (PA) while travelling
-- Personal liability overseas
-- Home contents cover during trip (some plans)
-- COVID-19 coverage (varies by insurer — check carefully)
-
-PLANNING NORMS:
-- Individual leisure: mid-tier minimum; premium if travelling to US, Japan, Europe (high medical costs)
-- Family travel: family plan more cost-effective than individual policies
-- Seniors 65+: check age limits, sub-limits on medical, pre-existing exclusions — may need specialist insurer
-- Annual plans: recommend for clients travelling 3+ times/year — significantly more cost-effective
-- Business travel: check if employer provides cover; personal plan may still be needed
-
-INDICATIVE PREMIUMS (per trip, Singapore market):
-- Individual, ASEAN, 7–10 days: SGD 25–50 basic, SGD 45–80 mid, SGD 80–130 premium
-- Individual, Asia incl Japan/Korea/Australia, 7–10 days: SGD 40–70 basic, SGD 70–110 mid, SGD 100–160 premium
-- Individual, Worldwide incl US/Europe, 7–10 days: SGD 80–130 basic, SGD 120–200 mid, SGD 180–300 premium
-- Family of 4, Asia 10 days: SGD 150–250 basic, SGD 250–400 mid, SGD 350–550 premium
-- Annual plan, individual, Asia: SGD 150–300 depending on tier
-Always caveat: "Final premium is subject to insurer underwriting and formal quotation."
-
-KEY EXCLUSIONS (always flag to clients):
-- Pre-existing medical conditions (unless declared and accepted, or PECW purchased)
-- Adventure/extreme sports unless endorsed
-- Pregnancy-related claims especially after week 26
-- Travel to countries under MFA advisory Level 3 or 4
-- Self-inflicted injury
-- Alcohol/drug-related incidents
-- Unattended baggage claims
-- Delay claims without written carrier confirmation
-- Manual work or hazardous occupations while travelling
-
-PRE-EXISTING CONDITIONS:
-- Most standard plans exclude or sub-limit pre-existing conditions
-- Pre-existing condition waiver (PECW) available from some insurers — covers emergency overseas medical for declared conditions
-- Seniors with serious conditions may need specialist cover or dedicated senior travel plans
-- Always advise client to declare fully — non-disclosure can void claims
-- Common approach: PECW covers emergency medical from PE condition at sub-limit (e.g. SGD 50,000)
-
-DISCOVERY QUESTIONS:
-- Destination(s) and duration?
-- Number of travellers and ages (especially children under 2, seniors over 65)?
-- Purpose: leisure, business, or combination?
-- Any pre-existing medical conditions in the group?
-- Activities planned — adventure sports, diving, skiing?
-- How frequently do they travel per year? (annual plan opportunity)
-- Previous travel claims?
-- Existing corporate travel cover?
-- Travelling with valuable items (laptops, jewellery, cameras)?
-
-CLAIMS PROCESS (overseas medical emergency):
-1. Call insurer's 24-hour emergency assistance hotline IMMEDIATELY (number on policy card/app)
-2. Do NOT pay and claim later for hospitalisation if avoidable — insurer can arrange direct billing
-3. Get written confirmation of any delay, cancellation, or loss from airline/carrier/hotel
-4. Keep ALL receipts and medical reports
-5. For non-emergency medical: seek treatment, keep all documents, claim on return
-6. Submit claim within 30 days of return: completed claim form, receipts, medical reports, police report (if theft), carrier confirmation (if delay/cancellation)
-7. FC should follow up with client and offer to connect to GI OneDesk for claims support
-
-UNDERWRITING RED FLAGS:
-- Senior traveller 70+ with multiple serious conditions — may be declined or heavily sub-limited
-- Traveller already overseas seeking to buy insurance — most insurers will not accept
-- Travelling against medical advice
-- Destination under MFA advisory Level 3 or 4
-
-OTHER GI PRODUCTS:
-- Personal Lines: Home, Motor, Maid, Pet insurance
-- Commercial Lines: SME Package, Fire/Property, WICA, Public Liability, PI/D&O, CAR/EAR, GIT/Marine
-- For all products: provide coverage guidance, discovery questions, planning norms, underwriting direction, indicative premiums, claims/SOP guidance
-
 RESPONSE FORMAT:
 - Plain English an FC can act on immediately
-- Use ### headers for sections in longer answers
+- Use ### headers for sections
 - Bullet points for lists
-- Bold key terms and action items
-- End EVERY response with ### Next best action — 1-3 specific steps the FC should do next
-- Flag escalation to GI OneDesk explicitly when needed
+- Bold key terms
+- End EVERY response with ### Next best action — 1-3 specific steps
+- Flag escalation to GI OneDesk when needed
 
-COMPLIANCE:
-- Guidance and case preparation only
-- Final advice remains with authorised FCs
-- Underwriting decisions remain with licensed insurers
-- Premiums are indicative benchmarks only — always caveat
-- Escalate to GI OneDesk for: quote requests, complex/non-standard risks, senior travel, claims support
+TONE: Confident, collegial, practical. Like an experienced GI practitioner next to the FC.
+COMPLIANCE: Guidance and case preparation only. Final advice with authorised FCs. Premiums indicative only — always caveat.
 
-TONE: Confident, collegial, practical. Like an experienced GI practitioner next to the FC. Actionable, not academic.`;
+=== SME DEMO CLIENT: Si Ji Min Fu (四季民福) Peking Duck ===
+Renowned Beijing Peking Duck brand opening flagship Singapore outlet at ION Orchard.
+- 5,000 sqft restaurant, standard concrete building, NOT pre-war, NOT light industrial area
+- Renovation and fit-out: SGD 1,500,000 (NOTE: Spectra All Risks max SGD 1,000,000 — gap exists)
+- 30 headcount total:
+  * 5 managers/admin (non-manual): annual earnings SGD 40,000 each = SGD 200,000 total
+  * 15 kitchen/chef staff (manual): annual earnings SGD 125,000 each = SGD 1,875,000 total
+  * 10 service/waiting staff (manual): annual earnings SGD 125,000 each = SGD 1,250,000 total
+  * TOTAL ANNUAL EARNINGS: SGD 3,325,000
+- Monthly revenue: SGD 350,000 → Annual: SGD 4,200,000 → Daily: SGD 11,667
+- Monthly rent: SGD 30,000
+- Landlord requires minimum SGD 2,000,000 Fire & Extraneous Perils on Building under tenancy agreement
+- Plan type: FOOD & BEVERAGE under Sompo Spectra
+
+=== SOMPO SPECTRA F&B — FULL COVERAGE & PREMIUM COMPUTATION (incl. 9% GST) ===
+
+BASE PREMIUM (F&B plan): SGD 389.40/year
+
+ITEM 1 — ALL RISKS (Renovation + Contents):
+- Base SI included: SGD 150,000
+- Top-up: SGD 850,000 at 0.1635% = SGD 1,389.75
+- TOTAL SI: SGD 1,000,000 (maximum under Spectra)
+- *** GAP FLAG: Client reno SGD 1,500,000 — SGD 500,000 underinsured above Spectra max. Refer to Sompo for separate fire/property policy for the balance. ***
+
+ITEM 2 — CONSEQUENTIAL LOSS (Business Interruption):
+- Base: SGD 200/day included
+- Top-up: SGD 300/day (3 increments × SGD 32.70) = SGD 98.10
+- TOTAL: SGD 500/day maximum
+- *** GAP FLAG: Client actual daily revenue SGD 11,667. Spectra max SGD 500/day is severely underinsured. Recommend standalone BI policy — refer to GI OneDesk. ***
+
+ITEM 3 — MONEY IN TRANSIT:
+- Base: SGD 5,000 included
+- Top-up: SGD 5,000 at 0.3815% = SGD 19.07
+- TOTAL SI: SGD 10,000
+
+ITEM 4 — MONEY IN PREMISES:
+- Base: SGD 5,000 included
+- Top-up: SGD 5,000 at 0.3815% = SGD 19.07
+- TOTAL SI: SGD 10,000
+
+ITEM 5 — PERSONAL ACCIDENT:
+- 2 directors/partners covered under base (included in SGD 389.40)
+- Death/Permanent Disablement: SGD 50,000 each | Accidental Medical: SGD 500 each
+- No additional premium
+
+ITEM 6 — PUBLIC LIABILITY:
+- Base: SGD 1,000,000 included
+- Top-up: SGD 1,000,000 (2 × SGD 500,000 at SGD 81.75 each) = SGD 163.50
+- TOTAL SI: SGD 2,000,000 (maximum under Spectra)
+- Rationale: ION Orchard premium flagship, high footfall, up to 300 covers per service, landlord/mall requirements
+
+ITEM 7 — GOODS IN TRANSIT: SGD 2,000 included (N.A. top-up for F&B)
+
+ITEM 8 — LEGAL EXPENSES: SGD 2,000 included (N.A. top-up for F&B)
+
+ITEM 9 — FIRE & EXTRANEOUS PERILS ON BUILDING:
+- REQUIRED by landlord under tenancy agreement — minimum SGD 2,000,000
+- Rate: 0.0545% of SI = SGD 2,000,000 × 0.0545% = SGD 1,090.00
+- This covers the building/structural elements as required by CapitaLand/ION Orchard tenancy
+
+ITEM 10 — FIDELITY GUARANTEE:
+- Rate: SGD 16.35 per employee, max 15 employees
+- Recommend 10 cash-handling staff for F&B operation
+- Premium: 10 × SGD 16.35 = SGD 163.50
+
+ITEM 11 — WORK INJURY COMPENSATION (WICA):
+Spectra F&B rates by employee category:
+- Admin/Management (non-manual): 0.0881%
+- Chef/Kitchen Staff: 0.9443%
+- Cashier/Service/Sales/Waiter (manual): 0.2861%
+
+CALCULATION:
+- 5 managers (non-manual) × SGD 40,000 × 0.0881% = SGD 176.20
+- 15 kitchen/chef staff × SGD 125,000 × 0.9443% = SGD 17,705.63
+- 10 service/waiting staff (manual) × SGD 125,000 × 0.2861% = SGD 3,576.25
+- WICA TOTAL: SGD 21,458.08
+
+=== FULL INDICATIVE PREMIUM SUMMARY — Sompo Spectra F&B (四季民福 ION) ===
+Base premium (F&B):                        SGD    389.40
+1. All Risks top-up (SGD 850k → total 1M): SGD  1,389.75
+2. Consequential Loss (max SGD 500/day):   SGD     98.10
+3. Money in Transit top-up (total 10k):    SGD     19.07
+4. Money in Premises top-up (total 10k):   SGD     19.07
+5. Personal Accident (2 directors):        SGD      0.00 (in base)
+6. Public Liability (SGD 2M):              SGD    163.50
+9. Fire & Perils on Building (SGD 2M):     SGD  1,090.00
+10. Fidelity Guarantee (10 staff):         SGD    163.50
+11. WICA — 5 managers:                     SGD    176.20
+11. WICA — 15 kitchen/chef:                SGD 17,705.63
+11. WICA — 10 service/waiting (manual):    SGD  3,576.25
+---------------------------------------------------
+TOTAL INDICATIVE PREMIUM:                  SGD 24,790.47/year (incl. GST)
+
+=== 3 KEY GAPS / REFERRALS FC MUST ACTION ===
+1. ALL RISKS GAP: Client reno SGD 1.5M, Spectra max SGD 1M — SGD 500K underinsured. Must refer to Sompo for standalone fire/property policy to cover the SGD 500K balance.
+2. BUSINESS INTERRUPTION GAP: Spectra max SGD 500/day vs actual revenue SGD 11,667/day. Standalone BI policy is essential — refer to GI OneDesk immediately.
+3. WICA NOTE: All 30 staff covered under Spectra (within 25 manual + 5 non-manual categories). Clean coverage — no overflow issue with revised headcount breakdown.
+
+=== TRAVEL INSURANCE KNOWLEDGE ===
+PLAN TIERS: Basic (medical SGD 150-250k), Mid (SGD 300-500k), Premium (SGD 500k-1M+)
+PREMIUMS: Family of 4, Asia 10 days: SGD 150-250 basic, SGD 250-400 mid, SGD 350-550 premium
+KEY EXCLUSIONS: Pre-existing conditions, adventure sports, pregnancy after week 26, MFA Level 3/4, unattended baggage
+CLAIMS: Call 24hr hotline immediately, keep all documents, submit within 30 days
+OTHER GI PRODUCTS: Personal Lines (Home, Motor, Maid), Commercial Lines (SME Package, WICA, PL, PI/DO, CAR/EAR, Marine)
+
+=== CO-PILOT GUIDED DISCOVERY MODE ===
+When the FC starts the SME demo by saying "Start SME discovery" or similar, you INITIATE the conversation as Co-Pilot.
+You ask discovery questions ONE AT A TIME in a natural, collegial tone — like a senior GI colleague coaching the FC.
+After EACH FC answer, acknowledge it briefly, show what it means for coverage, then ask the next question.
+After all discovery questions are answered, present:
+1. A PROPOSED COVER TABLE in markdown format with columns: Coverage | Sum Insured | Insurer | Annual Premium (SGD)
+2. TOTAL INDICATIVE PREMIUM
+3. KEY GAPS section
+4. BEYOND SPECTRA — NEXT REVIEW section covering D&O, Keyman (Head Chef) Insurance, and Cyber Risk
+
+DISCOVERY QUESTION SEQUENCE (ask in this order, one at a time):
+Q1: "Great — let's build the insurance programme for your client. To start: what type of business is this, and where is the premises located?"
+Q2: "What is the estimated reinstatement value of the renovation and fit-out? And does the tenancy agreement require any minimum building coverage?"
+Q3: "How many staff does the client have, and how would you categorise them — management, kitchen, or front-of-house service?"
+Q4: "What are the approximate annual earnings for each staff category? I'll need this to calculate the WICA premium accurately."
+Q5: "What is the client's estimated monthly revenue? This helps us size the Business Interruption exposure."
+Q6: "For Public Liability — does the client handle cash heavily? And are there any high-value items or equipment we should note for Fidelity cover?"
+Q7: "Last one — are there any previous claims or loss history in the past 3 years? And is the premises in a standard building or light industrial area?"
+
+After Q7 is answered, say: "Perfect — I have everything I need. Let me now build the full coverage recommendation for you." Then present the full table and analysis using the Si Ji Min Fu parameters.`;
+let activeTab='travel';
 
 let hist=[],loading=false;
 const msgsEl=document.getElementById('msgs'),ui=document.getElementById('ui'),sb=document.getElementById('sb');
@@ -337,7 +421,7 @@ async function send(){
     const r=await fetch(API_URL,{
       method:'POST',
    headers:{'Content-Type':'application/json','x-api-key':_k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:1000,system:SYS,messages:hist})
+      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:1000,system:activeTab==='travel'?SYS_TRAVEL:SYS_SME,messages:hist})
     });
     const d=await r.json();
     const rep=d.content?.find(b=>b.type==='text')?.text||'Sorry, no response received. Please try again.';
@@ -411,9 +495,16 @@ function dtags(t){
 }
 
 function clearChat(){
-  hist=[];msgsEl.innerHTML='';
-  const w=document.createElement('div');w.className='welcome';w.id='welcome';
-  w.innerHTML='<div class="w-icon">🧭</div><div class="w-ttl">GI <span>Co-Pilot</span> is ready</div><div class="w-sub">Board demo loaded. Run the 7-step Travel Insurance sequence from the sidebar, or ask any GI question.</div><div class="w-grid"><div class="w-card" onclick="qs(\'My client is planning a family trip to Japan for 10 days. What travel insurance should I recommend?\')"><div class="wci">✈️</div><div class="wct">Start demo — Step 1</div><div class="wcd">Family trip to Japan scenario.</div></div><div class="w-card" onclick="qs(\'What discovery questions should I ask before recommending travel insurance?\')"><div class="wci">🔍</div><div class="wct">Discovery questions</div><div class="wcd">What to ask the client first.</div></div><div class="w-card" onclick="qs(\'My client has a pre-existing heart condition. Can they still get travel insurance?\')"><div class="wci">❤️</div><div class="wct">Pre-existing condition</div><div class="wcd">What to advise the client.</div></div><div class="w-card" onclick="qs(\'My client had a medical emergency overseas in Japan. What is the claims process?\')"><div class="wci">🚑</div><div class="wct">Live claim scenario</div><div class="wcd">Medical emergency overseas.</div></div></div>';
+  hist=[];
+  msgsEl.innerHTML='';
+  clearQR();
+  const w=document.createElement('div');
+  w.className='welcome';w.id='welcome';
+  if(activeTab==='sme'){
+    w.innerHTML='<div class="w-icon">🦆</div><div class="w-ttl">SME F&B <span>Demo</span> ready</div><div class="w-sub">Si Ji Min Fu · ION Orchard · Sompo Spectra F&B<br>Click <strong style="color:var(--gold)">▶ Start SME Discovery</strong> in the sidebar to begin the guided Q&A, or jump to any topic.</div>';
+  } else {
+    w.innerHTML='<div class="w-icon">✈️</div><div class="w-ttl">Travel <span>Demo</span> ready</div><div class="w-sub">7-step Japan family travel scenario. Run from the sidebar or ask any travel insurance question.</div>';
+  }
   msgsEl.appendChild(w);
 }
 
@@ -429,6 +520,124 @@ document.querySelectorAll('.cap').forEach(c=>{
     ui.focus();
   });
 });
+
+function switchDemo(t){
+  activeTab=t;
+  document.querySelectorAll('.dtab').forEach(el=>el.classList.remove('active'));
+  document.getElementById('dtab-'+t).classList.add('active');
+  document.getElementById('sb-travel').style.display=t==='travel'?'block':'none';
+  document.getElementById('sb-sme').style.display=t==='sme'?'block':'none';
+  clearChat();
+}
+
+function clearQR(){
+  document.getElementById('qr-wrap').innerHTML='';
+}
+
+function showQR(replies){
+  const wrap=document.getElementById('qr-wrap');
+  wrap.innerHTML='';
+  replies.forEach(r=>{
+    const btn=document.createElement('button');
+    btn.className='qr-btn';
+    btn.textContent=r;
+    btn.onclick=()=>{
+      wrap.innerHTML='';
+      ui.value=r;
+      ar(ui);
+      send();
+    };
+    wrap.appendChild(btn);
+  });
+}
+
+function startSMEDemo(){
+  switchDemo('sme');
+  setTimeout(()=>{
+    // Co-Pilot fires the opening question
+    const opener="I'd like to help you build the right insurance programme for your SME client. Let me ask you a few quick discovery questions — one at a time — so I can put together a proper coverage recommendation.\n\nTo start: **What type of business is this, and where is the premises located?**";
+    hist.push({role:'assistant',content:opener});
+    addMsg('assistant', opener);
+    showQR([
+      "It's a Peking Duck restaurant — Si Ji Min Fu. They're opening a 5,000 sqft flagship outlet at ION Orchard, Singapore.",
+      "F&B restaurant, premium mall location in Orchard Road."
+    ]);
+  }, 100);
+}
+
+// Intercept send to show next QR after assistant replies in SME demo
+const _origSend = send;
+// Override send to chain QR after SME responses
+const smeQRChain = [
+  // After Q1 answered → show Q2 reply options
+  ["It's a Peking Duck restaurant","F&B restaurant"],
+  // After Q2 answered
+  ["1.5 million","SGD 1.5M","renovation","reno"],
+  // After Q3 answered
+  ["30 staff","headcount","kitchen","manual"],
+  // After Q4 answered
+  ["40,000","125,000","annual earnings","wages"],
+  // After Q5 answered
+  ["350,000","revenue","monthly"],
+  // After Q6 answered
+  ["cash","fidelity","liability"],
+  // After Q7 answered
+  ["no claims","clean","standard building"]
+];
+
+const qrReplies = [
+  // Q2 replies
+  ["The renovation and fit-out cost SGD 1.5 million. The tenancy agreement with ION Orchard requires minimum SGD 2 million Fire & Perils coverage on the building.",
+   "Reno is SGD 1.5M. Landlord requires at least SGD 2M building cover under the lease."],
+  // Q3 replies
+  ["30 staff in total — 5 are management and admin, non-manual. The remaining 25 are all manual: kitchen and chefs, plus front-of-house service and waitstaff.",
+   "30 headcount. 5 managers non-manual, 25 manual split between kitchen and service staff."],
+  // Q4 replies
+  ["The 5 managers earn SGD 40,000 per year each. The 25 manual staff — kitchen and service — earn SGD 125,000 per year each.",
+   "Managers: SGD 40k annual each. Kitchen and service staff: SGD 125k annual each."],
+  // Q5 replies
+  ["Monthly revenue is estimated at SGD 350,000, so about SGD 4.2 million annually. Daily that's roughly SGD 11,667.",
+   "SGD 350,000 per month estimated revenue."],
+  // Q6 replies
+  ["Yes, heavy cash handling — it's a restaurant. I'd like to cover 10 cash-handling staff under Fidelity. Public Liability should be maximum given the ION Orchard footfall.",
+   "Heavy cash. Fidelity for 10 staff. Max Public Liability for the mall location."],
+  // Q7 replies
+  ["No claims history in the past 3 years. Standard concrete building, not pre-war, not light industrial area.",
+   "Clean loss record. Standard building, not light industrial."]
+];
+
+let smeQRStep = 0;
+
+async function sendWithQR(){
+  const txt = ui.value.trim();
+  clearQR();
+  await _origSend();
+  if(activeTab !== 'sme') return;
+  // Wait for response then show next QR
+  setTimeout(()=>{
+    if(smeQRStep < qrReplies.length){
+      showQR(qrReplies[smeQRStep]);
+      smeQRStep++;
+    }
+  }, 3000);
+}
+
+// Patch send button and enter key for SME QR chain
+const origSendFn = window.send;
+window.sendWithQR = sendWithQR;
+
+document.getElementById('sb').onclick = ()=>{
+  if(activeTab==='sme') sendWithQR();
+  else send();
+};
+
+// Also patch switchDemo to reset QR step
+const _sw = switchDemo;
+window.switchDemo = function(t){
+  smeQRStep=0;
+  _sw(t);
+};
+
 </script>
 </body>
 </html>
