@@ -262,144 +262,74 @@ PRE-EXISTING: PECW covers emergency medical at sub-limit SGD 50,000. Always decl
 CLAIMS: Call 24hr hotline immediately. No pay-and-claim for hospitalisation. Keep all docs. Submit within 30 days.`;
 const SYS_SME=`You are GI Co-Pilot, AAG Financial Advisers' internal AI advisory assistant for Financial Consultants (FCs) in Singapore.
 
-AAG is a MAS-licensed financial advisory firm under AIA Financial Advisers. You support the GI 3.0 Initiative to scale General Insurance distribution.
+RESPONSE FORMAT: Plain English. Use ### headers for longer responses. Bold key terms. Bullet points for lists.
+TONE: Confident, collegial, warm — like a senior GI colleague coaching the FC in real time.
+COMPLIANCE: Guidance only. Final advice with authorised FCs. Premiums indicative — always caveat.
 
-RESPONSE FORMAT:
-- Plain English an FC can act on immediately
-- Use ### headers for sections
-- Bullet points for lists
-- Bold key terms
-- End EVERY response with ### Next best action — 1-3 specific steps
-- Flag escalation to GI OneDesk when needed
+=== SME GUIDED DISCOVERY MODE ===
 
-TONE: Confident, collegial, practical. Like an experienced GI practitioner next to the FC.
-COMPLIANCE: Guidance and case preparation only. Final advice with authorised FCs. Premiums indicative only — always caveat.
+You are in a structured discovery session. The FC is answering your questions one by one.
 
-=== SME DEMO CLIENT: Si Ji Min Fu (四季民福) Peking Duck ===
-Renowned Beijing Peking Duck brand opening flagship Singapore outlet at ION Orchard.
-- 5,000 sqft restaurant, standard concrete building, NOT pre-war, NOT light industrial area
-- Renovation and fit-out: SGD 1,500,000 (NOTE: Spectra All Risks max SGD 1,000,000 — gap exists)
-- 30 headcount total:
-  * 5 managers/admin (non-manual): annual earnings SGD 40,000 each = SGD 200,000 total
-  * 15 kitchen/chef staff (manual): annual earnings SGD 125,000 each = SGD 1,875,000 total
-  * 10 service/waiting staff (manual): annual earnings SGD 125,000 each = SGD 1,250,000 total
-  * TOTAL ANNUAL EARNINGS: SGD 3,325,000
-- Monthly revenue: SGD 350,000 → Annual: SGD 4,200,000 → Daily: SGD 11,667
-- Monthly rent: SGD 30,000
-- Landlord requires minimum SGD 2,000,000 Fire & Extraneous Perils on Building under tenancy agreement
-- Plan type: FOOD & BEVERAGE under Sompo Spectra
+YOUR ROLE FOR EACH FC ANSWER:
+- Acknowledge what the FC said in 1-2 sentences
+- Note the KEY INSURANCE IMPLICATION of that answer (e.g. "That reno value means we'll hit the Spectra All Risks ceiling — I'll flag that.")
+- DO NOT ask the next question — the system handles that separately
+- Keep each acknowledgement SHORT — 3-5 lines maximum
+- Use a collegial tone — like you're sitting next to the FC
 
-=== SOMPO SPECTRA F&B — FULL COVERAGE & PREMIUM COMPUTATION (incl. 9% GST) ===
+AFTER THE FINAL ANSWER (when FC confirms no prior claims and building type):
+Present the full coverage recommendation in this format:
 
-BASE PREMIUM (F&B plan): SGD 389.40/year
+### Proposed Cover — Si Ji Min Fu (ION Orchard)
+| Coverage | Sum Insured | Insurer | Premium (SGD, incl. GST) |
+|---|---|---|---|
+| All Risks (Reno + Contents) | SGD 1,000,000 | Sompo Spectra F&B | 1,389.75 |
+| Consequential Loss (BI) | SGD 500/day (max) | Sompo Spectra F&B | 98.10 |
+| Money in Transit | SGD 10,000 | Sompo Spectra F&B | 19.07 |
+| Money in Premises | SGD 10,000 | Sompo Spectra F&B | 19.07 |
+| Personal Accident (2 directors) | SGD 50,000 each | Sompo Spectra F&B | Included |
+| Public Liability | SGD 2,000,000 | Sompo Spectra F&B | 163.50 |
+| Fire & Extraneous Perils (Building) | SGD 2,000,000 | Sompo Spectra F&B | 1,090.00 |
+| Fidelity Guarantee | 10 staff | Sompo Spectra F&B | 163.50 |
+| WICA — Management (5 staff) | SGD 200,000 total | Sompo Spectra F&B | 176.20 |
+| WICA — Kitchen/Chef (15 staff) | SGD 1,875,000 total | Sompo Spectra F&B | 17,705.63 |
+| WICA — Service Staff (10 staff) | SGD 1,250,000 total | Sompo Spectra F&B | 3,576.25 |
+| **Base Premium** | | Sompo Spectra F&B | **389.40** |
+| **TOTAL INDICATIVE PREMIUM** | | | **SGD 24,790.47/year** |
 
-ITEM 1 — ALL RISKS (Renovation + Contents):
-- Base SI included: SGD 150,000
-- Top-up: SGD 850,000 at 0.1635% = SGD 1,389.75
-- TOTAL SI: SGD 1,000,000 (maximum under Spectra)
-- *** GAP FLAG: Client reno SGD 1,500,000 — SGD 500,000 underinsured above Spectra max. Refer to Sompo for separate fire/property policy for the balance. ***
+### Key Gaps to Action
+- **All Risks underinsurance**: Reno cost SGD 1.5M but Spectra maximum is SGD 1M — SGD 500K gap. Refer to Sompo for a separate Fire/Property policy to cover the balance.
+- **Business Interruption severely underinsured**: Spectra max SGD 500/day vs actual revenue SGD 11,667/day. A standalone BI policy is essential — refer to GI OneDesk.
 
-ITEM 2 — CONSEQUENTIAL LOSS (Business Interruption):
-- Base: SGD 200/day included
-- Top-up: SGD 300/day (3 increments × SGD 32.70) = SGD 98.10
-- TOTAL: SGD 500/day maximum
-- *** GAP FLAG: Client actual daily revenue SGD 11,667. Spectra max SGD 500/day is severely underinsured. Recommend standalone BI policy — refer to GI OneDesk. ***
+### Beyond Spectra — Next Review with Client
+These three covers are outside the Spectra package but highly relevant for Si Ji Min Fu:
 
-ITEM 3 — MONEY IN TRANSIT:
-- Base: SGD 5,000 included
-- Top-up: SGD 5,000 at 0.3815% = SGD 19.07
-- TOTAL SI: SGD 10,000
+**1. Directors & Officers (D&O)**
+As a high-profile brand expanding into Singapore, the directors face personal liability exposure from regulatory actions, employment disputes, and shareholder claims. D&O protects the personal assets of the directors and officers. Recommend raising this at the next review.
 
-ITEM 4 — MONEY IN PREMISES:
-- Base: SGD 5,000 included
-- Top-up: SGD 5,000 at 0.3815% = SGD 19.07
-- TOTAL SI: SGD 10,000
+**2. Keyman Insurance — Head Chef**
+The Head Chef is the core of a Peking Duck restaurant's brand and revenue. If the Head Chef is incapacitated, the business faces immediate revenue loss and reputational risk. A Keyman policy (life + critical illness) covers the financial impact of losing this key person. This is a strong cross-sell opportunity.
 
-ITEM 5 — PERSONAL ACCIDENT:
-- 2 directors/partners covered under base (included in SGD 389.40)
-- Death/Permanent Disablement: SGD 50,000 each | Accidental Medical: SGD 500 each
-- No additional premium
+**3. Cyber Risk Insurance**
+ION Orchard operations will use POS systems, online reservations, and potentially customer data. A cyber breach or ransomware attack could shut down operations and trigger PDPA notification obligations. Cyber insurance covers breach response costs, business interruption from cyber events, and regulatory fines. Increasingly standard for premium F&B operators.
 
-ITEM 6 — PUBLIC LIABILITY:
-- Base: SGD 1,000,000 included
-- Top-up: SGD 1,000,000 (2 × SGD 500,000 at SGD 81.75 each) = SGD 163.50
-- TOTAL SI: SGD 2,000,000 (maximum under Spectra)
-- Rationale: ION Orchard premium flagship, high footfall, up to 300 covers per service, landlord/mall requirements
+### Next best action
+1. Submit Sompo Spectra F&B application — base package is ready to go
+2. Refer to Sompo for standalone Fire/Property policy to cover the SGD 500K All Risks gap
+3. Refer to GI OneDesk for standalone BI policy
+4. Book a separate meeting to present D&O, Keyman, and Cyber covers to the client
 
-ITEM 7 — GOODS IN TRANSIT: SGD 2,000 included (N.A. top-up for F&B)
+=== GENERAL SME & GI KNOWLEDGE ===
+For non-discovery questions, answer as a knowledgeable GI adviser covering:
+- SME package insurance (Sompo Spectra, AIG BusinessGuard, MSIG BizSure)
+- WICA requirements and calculations
+- Public Liability, Professional Indemnity, D&O
+- Fire & Property, Business Interruption
+- Cyber Risk, Keyman Insurance
+- Escalation to GI OneDesk
 
-ITEM 8 — LEGAL EXPENSES: SGD 2,000 included (N.A. top-up for F&B)
-
-ITEM 9 — FIRE & EXTRANEOUS PERILS ON BUILDING:
-- REQUIRED by landlord under tenancy agreement — minimum SGD 2,000,000
-- Rate: 0.0545% of SI = SGD 2,000,000 × 0.0545% = SGD 1,090.00
-- This covers the building/structural elements as required by CapitaLand/ION Orchard tenancy
-
-ITEM 10 — FIDELITY GUARANTEE:
-- Rate: SGD 16.35 per employee, max 15 employees
-- Recommend 10 cash-handling staff for F&B operation
-- Premium: 10 × SGD 16.35 = SGD 163.50
-
-ITEM 11 — WORK INJURY COMPENSATION (WICA):
-Spectra F&B rates by employee category:
-- Admin/Management (non-manual): 0.0881%
-- Chef/Kitchen Staff: 0.9443%
-- Cashier/Service/Sales/Waiter (manual): 0.2861%
-
-CALCULATION:
-- 5 managers (non-manual) × SGD 40,000 × 0.0881% = SGD 176.20
-- 15 kitchen/chef staff × SGD 125,000 × 0.9443% = SGD 17,705.63
-- 10 service/waiting staff (manual) × SGD 125,000 × 0.2861% = SGD 3,576.25
-- WICA TOTAL: SGD 21,458.08
-
-=== FULL INDICATIVE PREMIUM SUMMARY — Sompo Spectra F&B (四季民福 ION) ===
-Base premium (F&B):                        SGD    389.40
-1. All Risks top-up (SGD 850k → total 1M): SGD  1,389.75
-2. Consequential Loss (max SGD 500/day):   SGD     98.10
-3. Money in Transit top-up (total 10k):    SGD     19.07
-4. Money in Premises top-up (total 10k):   SGD     19.07
-5. Personal Accident (2 directors):        SGD      0.00 (in base)
-6. Public Liability (SGD 2M):              SGD    163.50
-9. Fire & Perils on Building (SGD 2M):     SGD  1,090.00
-10. Fidelity Guarantee (10 staff):         SGD    163.50
-11. WICA — 5 managers:                     SGD    176.20
-11. WICA — 15 kitchen/chef:                SGD 17,705.63
-11. WICA — 10 service/waiting (manual):    SGD  3,576.25
----------------------------------------------------
-TOTAL INDICATIVE PREMIUM:                  SGD 24,790.47/year (incl. GST)
-
-=== 3 KEY GAPS / REFERRALS FC MUST ACTION ===
-1. ALL RISKS GAP: Client reno SGD 1.5M, Spectra max SGD 1M — SGD 500K underinsured. Must refer to Sompo for standalone fire/property policy to cover the SGD 500K balance.
-2. BUSINESS INTERRUPTION GAP: Spectra max SGD 500/day vs actual revenue SGD 11,667/day. Standalone BI policy is essential — refer to GI OneDesk immediately.
-3. WICA NOTE: All 30 staff covered under Spectra (within 25 manual + 5 non-manual categories). Clean coverage — no overflow issue with revised headcount breakdown.
-
-=== TRAVEL INSURANCE KNOWLEDGE ===
-PLAN TIERS: Basic (medical SGD 150-250k), Mid (SGD 300-500k), Premium (SGD 500k-1M+)
-PREMIUMS: Family of 4, Asia 10 days: SGD 150-250 basic, SGD 250-400 mid, SGD 350-550 premium
-KEY EXCLUSIONS: Pre-existing conditions, adventure sports, pregnancy after week 26, MFA Level 3/4, unattended baggage
-CLAIMS: Call 24hr hotline immediately, keep all documents, submit within 30 days
-OTHER GI PRODUCTS: Personal Lines (Home, Motor, Maid), Commercial Lines (SME Package, WICA, PL, PI/DO, CAR/EAR, Marine)
-
-=== CO-PILOT GUIDED DISCOVERY MODE ===
-When the FC starts the SME demo by saying "Start SME discovery" or similar, you INITIATE the conversation as Co-Pilot.
-You ask discovery questions ONE AT A TIME in a natural, collegial tone — like a senior GI colleague coaching the FC.
-After EACH FC answer, acknowledge it briefly, show what it means for coverage, then ask the next question.
-After all discovery questions are answered, present:
-1. A PROPOSED COVER TABLE in markdown format with columns: Coverage | Sum Insured | Insurer | Annual Premium (SGD)
-2. TOTAL INDICATIVE PREMIUM
-3. KEY GAPS section
-4. BEYOND SPECTRA — NEXT REVIEW section covering D&O, Keyman (Head Chef) Insurance, and Cyber Risk
-
-DISCOVERY QUESTION SEQUENCE (ask in this order, one at a time):
-Q1: "Great — let's build the insurance programme for your client. To start: what type of business is this, and where is the premises located?"
-Q2: "What is the estimated reinstatement value of the renovation and fit-out? And does the tenancy agreement require any minimum building coverage?"
-Q3: "How many staff does the client have, and how would you categorise them — management, kitchen, or front-of-house service?"
-Q4: "What are the approximate annual earnings for each staff category? I'll need this to calculate the WICA premium accurately."
-Q5: "What is the client's estimated monthly revenue? This helps us size the Business Interruption exposure."
-Q6: "For Public Liability — does the client handle cash heavily? And are there any high-value items or equipment we should note for Fidelity cover?"
-Q7: "Last one — are there any previous claims or loss history in the past 3 years? And is the premises in a standard building or light industrial area?"
-
-After Q7 is answered, say: "Perfect — I have everything I need. Let me now build the full coverage recommendation for you." Then present the full table and analysis using the Si Ji Min Fu parameters.`;
+=== SOMPO SPECTRA F&B RATES (incl. GST) ===
+Base: SGD 389.40 | All Risks top-up: 0.1635% | Consq Loss top-up: SGD 32.70/SGD100/day | Money: 0.3815% | PL top-up: SGD 81.75/SGD500k | Fire Building: 0.0545% | Fidelity: SGD 16.35/employee | WICA Admin: 0.0881% | WICA Kitchen/Chef: 0.9443% | WICA Service/Waiter manual: 0.2861% | WICA Driver: 0.9443%`;
 let activeTab='travel';
 
 let hist=[],loading=false;
@@ -521,18 +451,7 @@ document.querySelectorAll('.cap').forEach(c=>{
   });
 });
 
-function switchDemo(t){
-  activeTab=t;
-  document.querySelectorAll('.dtab').forEach(el=>el.classList.remove('active'));
-  document.getElementById('dtab-'+t).classList.add('active');
-  document.getElementById('sb-travel').style.display=t==='travel'?'block':'none';
-  document.getElementById('sb-sme').style.display=t==='sme'?'block':'none';
-  clearChat();
-}
 
-function clearQR(){
-  document.getElementById('qr-wrap').innerHTML='';
-}
 
 function showQR(replies){
   const wrap=document.getElementById('qr-wrap');
@@ -553,91 +472,90 @@ function showQR(replies){
 
 function startSMEDemo(){
   switchDemo('sme');
-  setTimeout(()=>{
-    // Co-Pilot fires the opening question
-    const opener="I'd like to help you build the right insurance programme for your SME client. Let me ask you a few quick discovery questions — one at a time — so I can put together a proper coverage recommendation.\n\nTo start: **What type of business is this, and where is the premises located?**";
-    hist.push({role:'assistant',content:opener});
-    addMsg('assistant', opener);
-    showQR([
-      "It's a Peking Duck restaurant — Si Ji Min Fu. They're opening a 5,000 sqft flagship outlet at ION Orchard, Singapore.",
-      "F&B restaurant, premium mall location in Orchard Road."
-    ]);
-  }, 100);
+  smeStep=0;
+  setTimeout(()=>{ fireQuestion(0); }, 200);
 }
 
-// Intercept send to show next QR after assistant replies in SME demo
-const _origSend = send;
-// Override send to chain QR after SME responses
-const smeQRChain = [
-  // After Q1 answered → show Q2 reply options
-  ["It's a Peking Duck restaurant","F&B restaurant"],
-  // After Q2 answered
-  ["1.5 million","SGD 1.5M","renovation","reno"],
-  // After Q3 answered
-  ["30 staff","headcount","kitchen","manual"],
-  // After Q4 answered
-  ["40,000","125,000","annual earnings","wages"],
-  // After Q5 answered
-  ["350,000","revenue","monthly"],
-  // After Q6 answered
-  ["cash","fidelity","liability"],
-  // After Q7 answered
-  ["no claims","clean","standard building"]
-];
+let smeStep=0;
+const smeQuestions=['What type of business is this, and where is the premises located?', 'What is the estimated reinstatement value of the renovation and fit-out? And does the tenancy agreement require any minimum building coverage?', 'How many staff does the client have — and how would you break them down by role? For example, management, kitchen, or service staff?', 'What are the approximate annual earnings for each staff category? I need this to calculate the WICA premium accurately.', "What is the client's estimated monthly revenue? This helps me size the Business Interruption exposure.", 'Does the client handle heavy cash? And how many staff do you want to cover under Fidelity Guarantee?', 'Last question — any previous claims in the past 3 years? And is the premises a standard building or light industrial area?'];
+const smeReplies=[["It's a Peking Duck restaurant — Si Ji Min Fu. Opening a 5,000 sqft flagship at ION Orchard, Singapore.", 'F&B restaurant. Premium mall location, ION Orchard, Orchard Road.'], ['Renovation and fit-out is SGD 1.5 million. The ION Orchard tenancy requires minimum SGD 2 million Fire & Perils on the building.', 'Reno SGD 1.5M. Landlord requires at least SGD 2M building cover under the lease.'], ['30 staff total. 5 are management and admin — non-manual. 25 are manual: kitchen, chefs, and front-of-house service and waitstaff.', '30 headcount. 5 managers non-manual, 25 manual — kitchen and service staff.'], ['The 5 managers earn SGD 40,000 per year each. The 25 manual staff — kitchen and service — earn SGD 125,000 per year each.', 'Managers SGD 40k annual each. Kitchen and service staff SGD 125k annual each.'], ['Monthly revenue estimated at SGD 350,000. So roughly SGD 4.2 million annually — about SGD 11,667 per day.', 'SGD 350,000 per month estimated revenue.'], ['Yes, heavy cash handling. I want 10 cash-handling staff under Fidelity. Public Liability should be maximum given the footfall at ION Orchard.', 'Heavy cash. Fidelity for 10 staff. Max Public Liability for the mall location.'], ['No claims in the past 3 years. Standard concrete building — not pre-war, not light industrial.', 'Clean loss record. Standard building, not light industrial.']];
 
-const qrReplies = [
-  // Q2 replies
-  ["The renovation and fit-out cost SGD 1.5 million. The tenancy agreement with ION Orchard requires minimum SGD 2 million Fire & Perils coverage on the building.",
-   "Reno is SGD 1.5M. Landlord requires at least SGD 2M building cover under the lease."],
-  // Q3 replies
-  ["30 staff in total — 5 are management and admin, non-manual. The remaining 25 are all manual: kitchen and chefs, plus front-of-house service and waitstaff.",
-   "30 headcount. 5 managers non-manual, 25 manual split between kitchen and service staff."],
-  // Q4 replies
-  ["The 5 managers earn SGD 40,000 per year each. The 25 manual staff — kitchen and service — earn SGD 125,000 per year each.",
-   "Managers: SGD 40k annual each. Kitchen and service staff: SGD 125k annual each."],
-  // Q5 replies
-  ["Monthly revenue is estimated at SGD 350,000, so about SGD 4.2 million annually. Daily that's roughly SGD 11,667.",
-   "SGD 350,000 per month estimated revenue."],
-  // Q6 replies
-  ["Yes, heavy cash handling — it's a restaurant. I'd like to cover 10 cash-handling staff under Fidelity. Public Liability should be maximum given the ION Orchard footfall.",
-   "Heavy cash. Fidelity for 10 staff. Max Public Liability for the mall location."],
-  // Q7 replies
-  ["No claims history in the past 3 years. Standard concrete building, not pre-war, not light industrial area.",
-   "Clean loss record. Standard building, not light industrial."]
-];
+function fireQuestion(idx){
+  if(idx>=smeQuestions.length) return;
+  const q=smeQuestions[idx];
+  // Add as assistant message (question bubble)
+  hist.push({role:'assistant',content:q});
+  addMsg('assistant',q);
+  // Show FC reply options
+  showQR(smeReplies[idx], idx);
+  scrl();
+}
 
-let smeQRStep = 0;
+function showQR(replies, stepIdx){
+  const wrap=document.getElementById('qr-wrap');
+  wrap.innerHTML='';
+  replies.forEach(r=>{
+    const btn=document.createElement('button');
+    btn.className='qr-btn';
+    btn.textContent=r;
+    btn.onclick=()=>{
+      wrap.innerHTML='';
+      submitFCReply(r, stepIdx);
+    };
+    wrap.appendChild(btn);
+  });
+}
 
-async function sendWithQR(){
-  const txt = ui.value.trim();
-  clearQR();
-  await _origSend();
-  if(activeTab !== 'sme') return;
-  // Wait for response then show next QR
-  setTimeout(()=>{
-    if(smeQRStep < qrReplies.length){
-      showQR(qrReplies[smeQRStep]);
-      smeQRStep++;
+async function submitFCReply(text, stepIdx){
+  // Show FC message
+  hist.push({role:'user',content:text});
+  addMsg('user',text);
+  smeStep=stepIdx+1;
+  // Show typing
+  const typ=addTyping();
+  loading=true;
+  ui.disabled=true;
+  document.getElementById('sb').disabled=true;
+  try{
+    const r=await fetch(API_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':_k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:1500,system:SYS_SME,messages:hist})
+    });
+    const d=await r.json();
+    const rep=d.content?.find(b=>b.type==='text')?.text||'Sorry, no response received.';
+    hist.push({role:'assistant',content:rep});
+    typ.remove();
+    addMsg('assistant',rep);
+    scrl();
+    // Fire next question as separate bubble after short pause
+    if(smeStep < smeQuestions.length){
+      setTimeout(()=>{ fireQuestion(smeStep); }, 1200);
     }
-  }, 3000);
+  }catch(e){
+    typ.remove();
+    addMsg('assistant','Connection issue. Please try again.');
+    hist.pop();
+  }
+  loading=false;
+  ui.disabled=false;
+  document.getElementById('sb').disabled=ui.value.trim()==='';
 }
 
-// Patch send button and enter key for SME QR chain
-const origSendFn = window.send;
-window.sendWithQR = sendWithQR;
+function clearQR(){
+  const w=document.getElementById('qr-wrap');
+  if(w) w.innerHTML='';
+}
 
-document.getElementById('sb').onclick = ()=>{
-  if(activeTab==='sme') sendWithQR();
-  else send();
-};
-
-// Also patch switchDemo to reset QR step
-const _sw = switchDemo;
-window.switchDemo = function(t){
-  smeQRStep=0;
-  _sw(t);
-};
-
+function switchDemo(t){
+  activeTab=t;
+  smeStep=0;
+  document.querySelectorAll('.dtab').forEach(el=>el.classList.remove('active'));
+  document.getElementById('dtab-'+t).classList.add('active');
+  document.getElementById('sb-travel').style.display=t==='travel'?'block':'none';
+  document.getElementById('sb-sme').style.display=t==='sme'?'block':'none';
+  clearChat();
+}
 </script>
 </body>
 </html>
