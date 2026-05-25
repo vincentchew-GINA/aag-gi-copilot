@@ -337,7 +337,7 @@ async function send(){
     const r=await fetch(API_URL,{
       method:'POST',
    headers:{'Content-Type':'application/json','x-api-key':_k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYS,messages:hist})
+      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:1000,system:SYS,messages:hist})
     });
     const d=await r.json();
     const rep=d.content?.find(b=>b.type==='text')?.text||'Sorry, no response received. Please try again.';
