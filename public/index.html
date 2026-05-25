@@ -116,23 +116,17 @@ header{background:linear-gradient(90deg,var(--navy),var(--navy-light));border-bo
 /* RESPONSIVE */
 @media(max-width:700px){.sidebar{display:none;}.msgs{padding:14px 12px;}.inpbar{padding:10px 12px 14px;}.w-grid{grid-template-columns:1fr;}}
 
-/* DEMO TABS */
 .demo-tabs{display:flex;background:rgba(255,255,255,.02);border-bottom:1px solid var(--border);padding:0 20px;flex-shrink:0;}
 .dtab{padding:9px 16px;font-size:11.5px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .18s;display:flex;align-items:center;gap:6px;white-space:nowrap;font-family:'DM Sans',sans-serif;background:none;border-top:none;border-left:none;border-right:none;}
-.dtab:hover{color:#fff;}
-.dtab.active{color:var(--gold);border-bottom-color:var(--gold);}
-
-/* QUICK REPLIES */
-.qr-wrap{padding:6px 22px 2px;display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;}
-.qr-btn{font-size:11.5px;padding:5px 12px;border-radius:20px;background:rgba(201,168,76,.08);border:1px solid var(--border);color:var(--gold-light);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap;max-width:100%;text-align:left;}
-.qr-btn:hover{background:rgba(201,168,76,.18);color:#fff;}
-
-/* MARKDOWN TABLES */
-.mbub table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px;}
-.mbub table th{background:rgba(201,168,76,.15);color:var(--gold-light);font-weight:600;padding:7px 10px;text-align:left;border:1px solid rgba(201,168,76,.2);font-size:11px;letter-spacing:.3px;}
-.mbub table td{padding:6px 10px;border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.85);vertical-align:top;}
-.mbub table tr:last-child td{background:rgba(201,168,76,.08);font-weight:600;color:var(--gold-light);}
-.mbub table tr:nth-child(even) td{background:rgba(255,255,255,.03);}
+.dtab:hover{color:#fff;}.dtab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.qr-area{padding:4px 22px 6px;display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;}
+.qr-btn{font-size:12px;padding:6px 14px;border-radius:20px;background:rgba(201,168,76,.08);border:1px solid var(--border);color:var(--gold-light);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap;}
+.qr-btn:hover{background:rgba(201,168,76,.2);color:#fff;}
+.mbub table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12px;}
+.mbub th{background:rgba(201,168,76,.15);color:var(--gold-light);font-weight:600;padding:6px 10px;text-align:left;border:1px solid rgba(201,168,76,.2);font-size:11px;}
+.mbub td{padding:5px 10px;border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.85);vertical-align:top;}
+.mbub tr:last-child td{background:rgba(201,168,76,.1);font-weight:600;color:var(--gold-light);}
+.mbub tr:nth-child(even) td{background:rgba(255,255,255,.03);}
 </style>
 </head>
 <body>
@@ -140,10 +134,7 @@ header{background:linear-gradient(90deg,var(--navy),var(--navy-light));border-bo
 <header>
   <div class="hdr-l">
     <div class="logo">AAG</div>
-    <div class="ttl"><div class="demo-tabs">
-  <button class="dtab active" id="dtab-travel" onclick="switchDemo('travel')">✈️&nbsp; Travel Insurance Demo</button>
-  <button class="dtab" id="dtab-sme" onclick="switchDemo('sme')">🦆&nbsp; SME F&amp;B Demo — 四季民福</button>
-</div>
+    <div class="ttl"><div class="demo-tabs"><button class="dtab active" id="dtab-travel" onclick="switchDemo('travel')">✈️&nbsp; Travel Insurance Demo</button><button class="dtab" id="dtab-sme" onclick="switchDemo('sme')">🦆&nbsp; SME F&amp;B Demo — 四季民福</button></div>
 <div class="main">GI Co-Pilot</div><div class="sub">FC Intelligence Platform</div></div>
   </div>
   <div class="hdr-r">
@@ -166,61 +157,41 @@ header{background:linear-gradient(90deg,var(--navy),var(--navy-light));border-bo
 <div class="main">
   <div class="sidebar">
     <div class="s-inner">
-
-      <!-- TRAVEL SIDEBAR -->
       <div id="sb-travel">
-        <div class="demo-hdr">
-          <svg viewBox="0 0 24 24"><path d="M2 3h20v14H2zm7 17h6m-3-3v3"/></svg>
-          <span>Board Demo — Travel</span>
-        </div>
+        <div class="demo-hdr"><svg viewBox="0 0 24 24"><path d="M2 3h20v14H2zm7 17h6m-3-3v3"/></svg><span>Board Demo — Travel</span></div>
         <button class="qs demo" onclick="qs('My client is planning a family trip to Japan for 10 days — 2 adults and 2 children. What travel insurance coverage should I recommend and what are the key benefits to highlight?')"><span class="seq">1</span>Family trip to Japan</button>
-        <button class="qs demo" onclick="qs('What discovery questions should I ask a client before recommending travel insurance for a family?')"><span class="seq">2</span>Discovery questions</button>
-        <button class="qs demo" onclick="qs('What are the planning norms for travel insurance — which tier and cover levels for a family going to Japan?')"><span class="seq">3</span>Planning norms &amp; tiers</button>
-        <button class="qs demo" onclick="qs('What are the key exclusions in travel insurance I must flag to my client before they travel to Japan?')"><span class="seq">4</span>Key exclusions to flag</button>
-        <button class="qs demo" onclick="qs('One of the adults has a pre-existing heart condition. Can they still get travel insurance and what should I advise?')"><span class="seq">5</span>Pre-existing condition</button>
-        <button class="qs demo" onclick="qs('What is the indicative premium for a family of 4 travelling to Japan for 10 days on a mid-tier plan?')"><span class="seq">6</span>Indicative premium</button>
-        <button class="qs demo" onclick="qs('My client just called — they had a medical emergency and are hospitalised in Japan right now. What is the claims process and what do I tell them immediately?')"><span class="seq">7</span>Live claim — Japan emergency</button>
+        <button class="qs demo" onclick="qs('What discovery questions should I ask before recommending travel insurance for a family?')"><span class="seq">2</span>Discovery questions</button>
+        <button class="qs demo" onclick="qs('What are the planning norms for travel insurance — which tier for a family going to Japan?')"><span class="seq">3</span>Planning norms &amp; tiers</button>
+        <button class="qs demo" onclick="qs('What are the key exclusions in travel insurance I must flag before they travel to Japan?')"><span class="seq">4</span>Key exclusions to flag</button>
+        <button class="qs demo" onclick="qs('One of the adults has a pre-existing heart condition. Can they still get travel insurance?')"><span class="seq">5</span>Pre-existing condition</button>
+        <button class="qs demo" onclick="qs('What is the indicative premium for a family of 4 going to Japan for 10 days on a mid-tier plan?')"><span class="seq">6</span>Indicative premium</button>
+        <button class="qs demo" onclick="qs('My client had a medical emergency and is hospitalised in Japan right now. What do I tell them?')"><span class="seq">7</span>Live claim — Japan</button>
         <div class="sdiv"></div>
         <div class="s-lbl">Personal lines</div>
-        <button class="qs" onclick="qs('What does Home Insurance cover and what are the key exclusions?')">🏠 Home insurance</button>
-        <button class="qs" onclick="qs('What are the key checks before placing Motor insurance for a client?')">🚗 Motor key checks</button>
+        <button class="qs" onclick="qs('What does Home Insurance cover and key exclusions?')">🏠 Home insurance</button>
+        <button class="qs" onclick="qs('Key checks before placing Motor insurance?')">🚗 Motor checks</button>
         <div class="sdiv"></div>
         <div class="s-lbl">SME / commercial</div>
         <button class="qs" onclick="qs('What SME risks should I check for an F&B business?')">🍽️ F&amp;B risk check</button>
-        <button class="qs" onclick="qs('What is the difference between Public Liability and Professional Indemnity?')">⚖️ PL vs PI</button>
+        <button class="qs" onclick="qs('Difference between Public Liability and Professional Indemnity?')">⚖️ PL vs PI</button>
         <button class="qs" onclick="qs('When should I escalate a GI case to OneDesk?')">🔁 Escalate to OneDesk</button>
       </div>
-
-      <!-- SME SIDEBAR -->
       <div id="sb-sme" style="display:none">
-        <div class="demo-hdr">
-          <svg viewBox="0 0 24 24"><path d="M2 3h20v14H2zm7 17h6m-3-3v3"/></svg>
-          <span>Board Demo — SME F&amp;B</span>
-        </div>
-        <div class="disc" style="margin-bottom:8px;">
-          <strong>🦆 四季民福 · ION Orchard</strong>
-          Co-Pilot leads discovery Q&amp;A. Click Start below — then use the pre-filled reply buttons as the FC.
-        </div>
-        <button class="qs demo" style="border-color:var(--gold);background:rgba(201,168,76,.1);color:var(--gold-light);" onclick="startSMEDemo()">▶ Start SME Discovery</button>
+        <div class="demo-hdr"><svg viewBox="0 0 24 24"><path d="M2 3h20v14H2zm7 17h6m-3-3v3"/></svg><span>Board Demo — SME F&amp;B</span></div>
+        <div class="disc" style="margin-bottom:8px;"><strong>🦆 四季民福 · ION Orchard</strong>Co-Pilot leads discovery Q&amp;A. Click Start — then tap the pre-filled FC reply buttons.</div>
+        <button class="qs demo" style="border-color:var(--gold);background:rgba(201,168,76,.1);color:var(--gold-light);" onclick="startSMEDemo()">▶&nbsp; Start SME Discovery</button>
         <div class="sdiv"></div>
-        <div class="s-lbl">Or jump to a topic</div>
+        <div class="s-lbl">Jump to topic</div>
         <button class="qs" onclick="qs('What are the key SME insurance risks for a premium F&B restaurant at ION Orchard?')">🍽️ F&amp;B risk overview</button>
         <button class="qs" onclick="qs('Walk me through the Sompo Spectra F&B package and what it covers.')">📋 Spectra F&amp;B package</button>
-        <button class="qs" onclick="qs('How do I calculate WICA premium for F&B staff under Sompo Spectra?')">👷 WICA calculation</button>
-        <button class="qs" onclick="qs('What are the key gaps in Sompo Spectra for a large F&B operator and what standalone policies should I recommend?')">⚠️ Spectra gaps</button>
-        <button class="qs" onclick="qs('Beyond the Spectra package, what additional covers should I discuss with an F&B client — D&O, Keyman for Head Chef, and Cyber risk?')">🔭 Beyond Spectra</button>
+        <button class="qs" onclick="qs('How do I calculate WICA for F&B staff under Sompo Spectra?')">👷 WICA calculation</button>
+        <button class="qs" onclick="qs('Beyond Spectra, what covers should I discuss — D&O, Keyman for Head Chef, and Cyber risk?')">🔭 Beyond Spectra</button>
         <button class="qs" onclick="qs('When should I escalate this SME F&B case to GI OneDesk?')">🔁 Escalate to OneDesk</button>
       </div>
-
       <div class="sdiv"></div>
-      <div class="disc">
-        <strong>⚠ Advisory scope</strong>
-        Guidance only. Final advice and underwriting with authorised FCs and insurers. Premiums are indicative.
-      </div>
-
+      <div class="disc"><strong>⚠ Advisory scope</strong>Guidance only. Final advice with authorised FCs and insurers. Premiums indicative.</div>
     </div>
   </div>
-
   <div class="chat">
     <div class="msgs" id="msgs">
       <div class="welcome" id="welcome">
@@ -236,10 +207,9 @@ header{background:linear-gradient(90deg,var(--navy),var(--navy-light));border-bo
       </div>
     </div>
 
-    <div class="qr-wrap" id="qr-wrap"></div>
-    <div class="inpbar">
+    <div class="qr-area" id="qr-area"></div><div class="inpbar">
       <div class="iwrap">
-        <textarea id="ui" placeholder="Ask about travel insurance, or any GI product, underwriting, or discovery question…" rows="1" onkeydown="if(activeTab==='sme'&&event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendWithQR();}else hk(event);" oninput="ar(this)"></textarea>
+        <textarea id="ui" placeholder="Ask about travel insurance, or any GI product, underwriting, or discovery question…" rows="1" onkeydown="hk(event)" oninput="ar(this)"></textarea>
         <button id="sb" onclick="send()" disabled>
           <svg viewBox="0 0 24 24"><path d="M3 20v-6l8-2-8-2V4l19 8-19 8z"/></svg>
         </button>
@@ -252,92 +222,195 @@ header{background:linear-gradient(90deg,var(--navy),var(--navy-light));border-bo
 <script>
 const _a=[115,107,45,97,110,116,45,97,112,105,48,51,45,53,51,112,90,104,119,70,118,104,76,79,50,104,105,67,83,48,104,120,114,82,82,90,114,48,111,83,120,97,54,67,79,97,51,80,86,112,68,106,73,109,109,56,108,86,118,70,112,86,51,51,97,50,53,107,78,101,73,101,122,111,107,108,101,104,105,51,65,95,75,56,72,110,112,89,122,67,112,87,49,101,110,105,52,108,119,45,54,120,98,114,50,81,65,65];const _k=_a.map(c=>String.fromCharCode(c)).join('');const API_URL='https://api.anthropic.com/v1/messages';
 
-const SYS_TRAVEL=`You are GI Co-Pilot, AAG Financial Advisers' internal AI advisory assistant for Financial Consultants (FCs) in Singapore.
-AAG is a MAS-licensed financial advisory firm under AIA Financial Advisers.
-
-RESPONSE FORMAT: Plain English. Use ### headers. Bullet points. Bold key terms. End with ### Next best action.
-TONE: Confident, collegial, practical — like an experienced GI practitioner next to the FC.
-COMPLIANCE: Guidance only. Final advice with authorised FCs. Premiums indicative — always caveat.
-
-TRAVEL INSURANCE KNOWLEDGE (Singapore market):
-PLAN TIERS: Basic (medical SGD 150-250k, cancellation SGD 3-5k, baggage SGD 3-5k), Mid (medical SGD 300-500k, cancellation SGD 8-10k, baggage SGD 6-8k, home contents included), Premium (medical SGD 500k-1M+, cancellation SGD 10-15k, baggage SGD 10k+, golf/vehicle excess/concierge)
-KEY BENEFITS: Overseas medical most critical (Japan SGD 800-2,000/day), emergency evacuation, trip cancellation, travel delay per 6hr block, baggage, PA, personal liability, COVID-19 varies by insurer.
-PLANNING NORMS: Mid-tier minimum for leisure. Premium for US/Japan/Europe. Family plan more cost-effective. Seniors 65+ check age limits. Annual plan for 3+ trips/year.
-INDICATIVE PREMIUMS: Family of 4 Asia 10 days: SGD 150-250 basic, SGD 250-400 mid, SGD 350-550 premium. Individual Asia 7-10 days: SGD 40-70 basic, SGD 70-110 mid, SGD 100-160 premium.
-KEY EXCLUSIONS: Pre-existing (unless PECW), adventure sports, pregnancy after week 26, MFA Level 3/4, alcohol/drugs, unattended baggage.
-PRE-EXISTING: PECW covers emergency medical at sub-limit SGD 50,000. Always declare fully.
-CLAIMS: Call 24hr hotline immediately. No pay-and-claim for hospitalisation. Keep all docs. Submit within 30 days.`;
+const SYS_TRAVEL=`You are GI Co-Pilot, AAG Financial Advisers' internal AI advisory assistant for Financial Consultants (FCs) in Singapore. AAG is a MAS-licensed financial advisory firm under AIA Financial Advisers.
+RESPONSE FORMAT: Plain English. ### headers. Bullet points. Bold key terms. End with ### Next best action.
+TONE: Confident, collegial, practical.
+COMPLIANCE: Guidance only. Final advice with authorised FCs. Premiums indicative.
+TRAVEL INSURANCE: Plan tiers — Basic (medical SGD 150-250k), Mid (SGD 300-500k), Premium (SGD 500k-1M+). Family of 4 Asia 10 days: SGD 150-250 basic, SGD 250-400 mid, SGD 350-550 premium. Key exclusions: pre-existing, adventure sports, pregnancy after week 26, MFA Level 3/4. PECW for pre-existing at sub-limit SGD 50k. Claims: call 24hr hotline immediately, no pay-and-claim for hospitalisation, submit within 30 days.`;
 const SYS_SME=`You are GI Co-Pilot, AAG Financial Advisers' internal AI advisory assistant for Financial Consultants (FCs) in Singapore.
 
-RESPONSE FORMAT: Plain English. Use ### headers for longer responses. Bold key terms. Bullet points for lists.
-TONE: Confident, collegial, warm — like a senior GI colleague coaching the FC in real time.
-COMPLIANCE: Guidance only. Final advice with authorised FCs. Premiums indicative — always caveat.
+AAG is a MAS-licensed financial advisory firm under AIA Financial Advisers. You support the GI 3.0 Initiative to scale General Insurance distribution.
 
-=== SME GUIDED DISCOVERY MODE ===
+RESPONSE FORMAT:
+- Plain English an FC can act on immediately
+- Use ### headers for sections
+- Bullet points for lists
+- Bold key terms
+- End EVERY response with ### Next best action — 1-3 specific steps
+- Flag escalation to GI OneDesk when needed
 
-You are in a structured discovery session. The FC is answering your questions one by one.
+TONE: Confident, collegial, practical. Like an experienced GI practitioner next to the FC.
+COMPLIANCE: Guidance and case preparation only. Final advice with authorised FCs. Premiums indicative only — always caveat.
 
-YOUR ROLE FOR EACH FC ANSWER:
-- Acknowledge what the FC said in 1-2 sentences
-- Note the KEY INSURANCE IMPLICATION of that answer (e.g. "That reno value means we'll hit the Spectra All Risks ceiling — I'll flag that.")
-- DO NOT ask the next question — the system handles that separately
-- Keep each acknowledgement SHORT — 3-5 lines maximum
-- Use a collegial tone — like you're sitting next to the FC
+=== SME DEMO CLIENT: Si Ji Min Fu (四季民福) Peking Duck ===
+Renowned Beijing Peking Duck brand opening flagship Singapore outlet at ION Orchard.
+- 5,000 sqft restaurant, standard concrete building, NOT pre-war, NOT light industrial area
+- Renovation and fit-out: SGD 1,500,000 (NOTE: Spectra All Risks max SGD 1,000,000 — gap exists)
+- 30 headcount total:
+  * 5 managers/admin (non-manual): annual earnings SGD 40,000 each = SGD 200,000 total
+  * 15 kitchen/chef staff (manual): annual earnings SGD 125,000 each = SGD 1,875,000 total
+  * 10 service/waiting staff (manual): annual earnings SGD 125,000 each = SGD 1,250,000 total
+  * TOTAL ANNUAL EARNINGS: SGD 3,325,000
+- Monthly revenue: SGD 350,000 → Annual: SGD 4,200,000 → Daily: SGD 11,667
+- Monthly rent: SGD 30,000
+- Landlord requires minimum SGD 2,000,000 Fire & Extraneous Perils on Building under tenancy agreement
+- Plan type: FOOD & BEVERAGE under Sompo Spectra
 
-AFTER THE FINAL ANSWER (when FC confirms no prior claims and building type):
-Present the full coverage recommendation in this format:
+=== SOMPO SPECTRA F&B — FULL COVERAGE & PREMIUM COMPUTATION (incl. 9% GST) ===
 
-### Proposed Cover — Si Ji Min Fu (ION Orchard)
-| Coverage | Sum Insured | Insurer | Premium (SGD, incl. GST) |
+BASE PREMIUM (F&B plan): SGD 389.40/year
+
+ITEM 1 — ALL RISKS (Renovation + Contents):
+- Base SI included: SGD 150,000
+- Top-up: SGD 850,000 at 0.1635% = SGD 1,389.75
+- TOTAL SI: SGD 1,000,000 (maximum under Spectra)
+- *** GAP FLAG: Client reno SGD 1,500,000 — SGD 500,000 underinsured above Spectra max. Refer to Sompo for separate fire/property policy for the balance. ***
+
+ITEM 2 — CONSEQUENTIAL LOSS (Business Interruption):
+- Base: SGD 200/day included
+- Top-up: SGD 300/day (3 increments × SGD 32.70) = SGD 98.10
+- TOTAL: SGD 500/day maximum
+- *** GAP FLAG: Client actual daily revenue SGD 11,667. Spectra max SGD 500/day is severely underinsured. Recommend standalone BI policy — refer to GI OneDesk. ***
+
+ITEM 3 — MONEY IN TRANSIT:
+- Base: SGD 5,000 included
+- Top-up: SGD 5,000 at 0.3815% = SGD 19.07
+- TOTAL SI: SGD 10,000
+
+ITEM 4 — MONEY IN PREMISES:
+- Base: SGD 5,000 included
+- Top-up: SGD 5,000 at 0.3815% = SGD 19.07
+- TOTAL SI: SGD 10,000
+
+ITEM 5 — PERSONAL ACCIDENT:
+- 2 directors/partners covered under base (included in SGD 389.40)
+- Death/Permanent Disablement: SGD 50,000 each | Accidental Medical: SGD 500 each
+- No additional premium
+
+ITEM 6 — PUBLIC LIABILITY:
+- Base: SGD 1,000,000 included
+- Top-up: SGD 1,000,000 (2 × SGD 500,000 at SGD 81.75 each) = SGD 163.50
+- TOTAL SI: SGD 2,000,000 (maximum under Spectra)
+- Rationale: ION Orchard premium flagship, high footfall, up to 300 covers per service, landlord/mall requirements
+
+ITEM 7 — GOODS IN TRANSIT: SGD 2,000 included (N.A. top-up for F&B)
+
+ITEM 8 — LEGAL EXPENSES: SGD 2,000 included (N.A. top-up for F&B)
+
+ITEM 9 — FIRE & EXTRANEOUS PERILS ON BUILDING:
+- REQUIRED by landlord under tenancy agreement — minimum SGD 2,000,000
+- Rate: 0.0545% of SI = SGD 2,000,000 × 0.0545% = SGD 1,090.00
+- This covers the building/structural elements as required by CapitaLand/ION Orchard tenancy
+
+ITEM 10 — FIDELITY GUARANTEE:
+- Rate: SGD 16.35 per employee, max 15 employees
+- Recommend 10 cash-handling staff for F&B operation
+- Premium: 10 × SGD 16.35 = SGD 163.50
+
+ITEM 11 — WORK INJURY COMPENSATION (WICA):
+Spectra F&B rates by employee category:
+- Admin/Management (non-manual): 0.0881%
+- Chef/Kitchen Staff: 0.9443%
+- Cashier/Service/Sales/Waiter (manual): 0.2861%
+
+CALCULATION:
+- 5 managers (non-manual) × SGD 40,000 × 0.0881% = SGD 176.20
+- 15 kitchen/chef staff × SGD 125,000 × 0.9443% = SGD 17,705.63
+- 10 service/waiting staff (manual) × SGD 125,000 × 0.2861% = SGD 3,576.25
+- WICA TOTAL: SGD 21,458.08
+
+=== FULL INDICATIVE PREMIUM SUMMARY — Sompo Spectra F&B (四季民福 ION) ===
+Base premium (F&B):                        SGD    389.40
+1. All Risks top-up (SGD 850k → total 1M): SGD  1,389.75
+2. Consequential Loss (max SGD 500/day):   SGD     98.10
+3. Money in Transit top-up (total 10k):    SGD     19.07
+4. Money in Premises top-up (total 10k):   SGD     19.07
+5. Personal Accident (2 directors):        SGD      0.00 (in base)
+6. Public Liability (SGD 2M):              SGD    163.50
+9. Fire & Perils on Building (SGD 2M):     SGD  1,090.00
+10. Fidelity Guarantee (10 staff):         SGD    163.50
+11. WICA — 5 managers:                     SGD    176.20
+11. WICA — 15 kitchen/chef:                SGD 17,705.63
+11. WICA — 10 service/waiting (manual):    SGD  3,576.25
+---------------------------------------------------
+TOTAL INDICATIVE PREMIUM:                  SGD 24,790.47/year (incl. GST)
+
+=== 3 KEY GAPS / REFERRALS FC MUST ACTION ===
+1. ALL RISKS GAP: Client reno SGD 1.5M, Spectra max SGD 1M — SGD 500K underinsured. Must refer to Sompo for standalone fire/property policy to cover the SGD 500K balance.
+2. BUSINESS INTERRUPTION GAP: Spectra max SGD 500/day vs actual revenue SGD 11,667/day. Standalone BI policy is essential — refer to GI OneDesk immediately.
+3. WICA NOTE: All 30 staff covered under Spectra (within 25 manual + 5 non-manual categories). Clean coverage — no overflow issue with revised headcount breakdown.
+
+=== TRAVEL INSURANCE KNOWLEDGE ===
+PLAN TIERS: Basic (medical SGD 150-250k), Mid (SGD 300-500k), Premium (SGD 500k-1M+)
+PREMIUMS: Family of 4, Asia 10 days: SGD 150-250 basic, SGD 250-400 mid, SGD 350-550 premium
+KEY EXCLUSIONS: Pre-existing conditions, adventure sports, pregnancy after week 26, MFA Level 3/4, unattended baggage
+CLAIMS: Call 24hr hotline immediately, keep all documents, submit within 30 days
+OTHER GI PRODUCTS: Personal Lines (Home, Motor, Maid), Commercial Lines (SME Package, WICA, PL, PI/DO, CAR/EAR, Marine)
+=== GUIDED DISCOVERY MODE ===
+When asked to acknowledge an FC's answer during SME discovery:
+- Respond in 2-3 sentences ONLY
+- Acknowledge the key fact
+- State ONE coverage implication
+- Do NOT ask another question — the system handles that
+- Keep it brief and collegial
+
+When you receive the message "GENERATE_FINAL_RECOMMENDATION", output the full coverage table and analysis using this EXACT format:
+
+### Proposed Cover — Si Ji Min Fu 四季民福 (ION Orchard)
+
+| Coverage | Sum Insured | Insurer | Premium (SGD incl. GST) |
 |---|---|---|---|
-| All Risks (Reno + Contents) | SGD 1,000,000 | Sompo Spectra F&B | 1,389.75 |
-| Consequential Loss (BI) | SGD 500/day (max) | Sompo Spectra F&B | 98.10 |
-| Money in Transit | SGD 10,000 | Sompo Spectra F&B | 19.07 |
-| Money in Premises | SGD 10,000 | Sompo Spectra F&B | 19.07 |
-| Personal Accident (2 directors) | SGD 50,000 each | Sompo Spectra F&B | Included |
-| Public Liability | SGD 2,000,000 | Sompo Spectra F&B | 163.50 |
-| Fire & Extraneous Perils (Building) | SGD 2,000,000 | Sompo Spectra F&B | 1,090.00 |
-| Fidelity Guarantee | 10 staff | Sompo Spectra F&B | 163.50 |
-| WICA — Management (5 staff) | SGD 200,000 total | Sompo Spectra F&B | 176.20 |
-| WICA — Kitchen/Chef (15 staff) | SGD 1,875,000 total | Sompo Spectra F&B | 17,705.63 |
-| WICA — Service Staff (10 staff) | SGD 1,250,000 total | Sompo Spectra F&B | 3,576.25 |
-| **Base Premium** | | Sompo Spectra F&B | **389.40** |
-| **TOTAL INDICATIVE PREMIUM** | | | **SGD 24,790.47/year** |
+| Base F&B Package | — | Sompo Spectra | 389.40 |
+| All Risks — Reno & Contents | SGD 1,000,000 | Sompo Spectra | 1,389.75 |
+| Consequential Loss (BI) | SGD 500/day max | Sompo Spectra | 98.10 |
+| Money in Transit | SGD 10,000 | Sompo Spectra | 19.07 |
+| Money in Premises | SGD 10,000 | Sompo Spectra | 19.07 |
+| Personal Accident — 2 Directors | SGD 50,000 each | Sompo Spectra | Included |
+| Public Liability | SGD 2,000,000 | Sompo Spectra | 163.50 |
+| Fire & Extraneous Perils (Building) | SGD 2,000,000 | Sompo Spectra | 1,090.00 |
+| Fidelity Guarantee — 10 staff | SGD 16,350 | Sompo Spectra | 163.50 |
+| WICA — 5 Managers (non-manual) | SGD 200,000 earnings | Sompo Spectra | 176.20 |
+| WICA — 15 Kitchen/Chef (manual) | SGD 1,875,000 earnings | Sompo Spectra | 17,705.63 |
+| WICA — 10 Service Staff (manual) | SGD 1,250,000 earnings | Sompo Spectra | 3,576.25 |
+| **TOTAL ANNUAL PREMIUM** | | **Sompo Spectra F&B** | **SGD 24,790.47** |
 
 ### Key Gaps to Action
-- **All Risks underinsurance**: Reno cost SGD 1.5M but Spectra maximum is SGD 1M — SGD 500K gap. Refer to Sompo for a separate Fire/Property policy to cover the balance.
+- **All Risks shortfall**: Client reno SGD 1.5M — Spectra maximum is SGD 1M. SGD 500K underinsured. Refer to Sompo for a separate Fire/Property policy to cover the balance.
 - **Business Interruption severely underinsured**: Spectra max SGD 500/day vs actual revenue SGD 11,667/day. A standalone BI policy is essential — refer to GI OneDesk.
 
 ### Beyond Spectra — Next Review with Client
-These three covers are outside the Spectra package but highly relevant for Si Ji Min Fu:
 
 **1. Directors & Officers (D&O)**
-As a high-profile brand expanding into Singapore, the directors face personal liability exposure from regulatory actions, employment disputes, and shareholder claims. D&O protects the personal assets of the directors and officers. Recommend raising this at the next review.
+As a high-profile brand entering Singapore, the directors face personal liability from regulatory actions, employment disputes, and creditor claims. D&O protects their personal assets. Strong conversation to have at the next review.
 
 **2. Keyman Insurance — Head Chef**
-The Head Chef is the core of a Peking Duck restaurant's brand and revenue. If the Head Chef is incapacitated, the business faces immediate revenue loss and reputational risk. A Keyman policy (life + critical illness) covers the financial impact of losing this key person. This is a strong cross-sell opportunity.
+The Head Chef is the core of Si Ji Min Fu's brand and revenue. Loss through illness, accident, or resignation creates immediate revenue and reputational risk. A Keyman policy (life + critical illness) covers the financial impact. This is a highly relevant cross-sell for a specialist F&B operator.
 
 **3. Cyber Risk Insurance**
-ION Orchard operations will use POS systems, online reservations, and potentially customer data. A cyber breach or ransomware attack could shut down operations and trigger PDPA notification obligations. Cyber insurance covers breach response costs, business interruption from cyber events, and regulatory fines. Increasingly standard for premium F&B operators.
+ION Orchard operations use POS systems, online reservations, and customer data. A breach or ransomware attack could shut down operations and trigger PDPA notification obligations. Cyber insurance covers breach response, BI from cyber events, and regulatory fines — increasingly standard for premium F&B.
 
 ### Next best action
-1. Submit Sompo Spectra F&B application — base package is ready to go
-2. Refer to Sompo for standalone Fire/Property policy to cover the SGD 500K All Risks gap
-3. Refer to GI OneDesk for standalone BI policy
-4. Book a separate meeting to present D&O, Keyman, and Cyber covers to the client
-
-=== GENERAL SME & GI KNOWLEDGE ===
-For non-discovery questions, answer as a knowledgeable GI adviser covering:
-- SME package insurance (Sompo Spectra, AIG BusinessGuard, MSIG BizSure)
-- WICA requirements and calculations
-- Public Liability, Professional Indemnity, D&O
-- Fire & Property, Business Interruption
-- Cyber Risk, Keyman Insurance
-- Escalation to GI OneDesk
-
-=== SOMPO SPECTRA F&B RATES (incl. GST) ===
-Base: SGD 389.40 | All Risks top-up: 0.1635% | Consq Loss top-up: SGD 32.70/SGD100/day | Money: 0.3815% | PL top-up: SGD 81.75/SGD500k | Fire Building: 0.0545% | Fidelity: SGD 16.35/employee | WICA Admin: 0.0881% | WICA Kitchen/Chef: 0.9443% | WICA Service/Waiter manual: 0.2861% | WICA Driver: 0.9443%`;
+1. Submit Sompo Spectra F&B application — base package ready
+2. Refer to Sompo for standalone Fire/Property policy for SGD 500K All Risks gap
+3. Refer to GI OneDesk for standalone Business Interruption policy
+4. Schedule next meeting to present D&O, Keyman, and Cyber covers`;
 let activeTab='travel';
+const SYS_SME_SHORT=`You are GI Co-Pilot, AAG Financial Advisers' internal AI advisory assistant for Financial Consultants (FCs) in Singapore.
+
+You are in a guided SME insurance discovery session for Si Ji Min Fu Peking Duck restaurant at ION Orchard.
+
+YOUR ROLE: When the FC answers a discovery question, respond in exactly 2-3 SHORT sentences:
+1. Acknowledge the key fact they gave
+2. State ONE brief coverage implication
+3. Do NOT ask another question — the system handles that automatically
+
+Keep responses short, warm, and collegial — like a GI colleague sitting next to the FC.
+Examples of good responses:
+- "Perfect — 5,000 sqft at ION Orchard puts this firmly in premium F&B territory. High footfall means Public Liability needs to be at maximum limits."
+- "SGD 1.5M reno noted — that's above the Spectra All Risks ceiling of SGD 1M, so we'll have a gap to address. The SGD 2M landlord requirement for Fire & Perils is standard for ION."
+- "30 staff with that manual/non-manual split gives us clear WICA categories to work with. Kitchen and service staff have different WICA rates so the split matters for the premium calc."
+
+COMPLIANCE: Guidance only. Final advice with authorised FCs. Premiums indicative.`;
 
 let hist=[],loading=false;
 const msgsEl=document.getElementById('msgs'),ui=document.getElementById('ui'),sb=document.getElementById('sb');
@@ -391,45 +464,30 @@ function addTyping(){
 }
 
 function fmt(t){
-    // Parse markdown tables - line by line approach
-  const lines0=t.split('\n');
-  let tableOut=[],inTable=false,tableLines=[];
-  for(let i=0;i<lines0.length;i++){
-    const l=lines0[i];
-    const isTableRow=l.trim().startsWith('|')&&l.trim().endsWith('|');
-    const isSep=/^\s*\|[-:\s|]+\|\s*$/.test(l);
-    if(isTableRow||isSep){
-      inTable=true;tableLines.push(l);
-    } else {
-      if(inTable&&tableLines.length>0){
-        let th='<table>';let isHead=true;
-        tableLines.forEach(tl=>{
-          if(/^\s*\|[-:\s|]+\|\s*$/.test(tl)){isHead=false;return;}
-          const cells=tl.split('|').slice(1,-1);
-          if(isHead){th+='<tr>'+cells.map(cl=>'<th>'+cl.trim().replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</th>').join('')+'</tr>';isHead=false;}
-          else{th+='<tr>'+cells.map(cl=>'<td>'+cl.trim().replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</td>').join('')+'</tr>';}
+  // Render markdown tables
+  const tlines=t.split('\n');
+  let out=[],buf=[],inT=false;
+  for(let i=0;i<tlines.length;i++){
+    const l=tlines[i];
+    const isRow=l.trim().startsWith('|')&&l.trim().endsWith('|');
+    const isSep=/^[\s|:-]+$/.test(l.trim());
+    if(isRow||isSep){inT=true;buf.push(l);}
+    else{
+      if(inT&&buf.length){
+        let tbl='<table>',hDone=false;
+        buf.forEach(r=>{
+          if(/^[\s|:-]+$/.test(r.trim()))return;
+          const cells=r.split('|').filter((_,ci,a)=>ci>0&&ci<a.length-1);
+          if(!hDone){tbl+='<tr>'+cells.map(x=>'<th>'+x.trim()+'</th>').join('')+'</tr>';hDone=true;}
+          else tbl+='<tr>'+cells.map(x=>'<td>'+x.trim().replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</td>').join('')+'</tr>';
         });
-        th+='</table>';tableOut.push(th);tableLines=[];inTable=false;
+        tbl+='</table>';out.push(tbl);buf=[];inT=false;
       }
-      tableOut.push(l);
+      out.push(l);
     }
   }
-  if(tableLines.length>0){
-    let th='<table>';let isHead=true;
-    tableLines.forEach(tl=>{
-      if(/^\s*\|[-:\s|]+\|\s*$/.test(tl)){isHead=false;return;}
-      const cells=tl.split('|').slice(1,-1);
-      if(isHead){th+='<tr>'+cells.map(cl=>'<th>'+cl.trim().replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</th>').join('')+'</tr>';isHead=false;}
-      else{th+='<tr>'+cells.map(cl=>'<td>'+cl.trim().replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</td>').join('')+'</tr>';}
-    });
-    th+='</table>';tableOut.push(th);
-  }
-  t=tableOut.join('\n');
-    html+='</table>';
-    return '
-'+html+'
-';
-  });
+  if(buf.length){let tbl='<table>',hDone=false;buf.forEach(r=>{if(/^[\s|:-]+$/.test(r.trim()))return;const cells=r.split('|').filter((_,ci,a)=>ci>0&&ci<a.length-1);if(!hDone){tbl+='<tr>'+cells.map(x=>'<th>'+x.trim()+'</th>').join('')+'</tr>';hDone=true;}else tbl+='<tr>'+cells.map(x=>'<td>'+x.trim().replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</td>').join('')+'</tr>';});tbl+='</table>';out.push(tbl);}
+  t=out.join('\n');
   let h=t
     .replace(/^###\s+(.+)$/gm,'<h3>$1</h3>')
     .replace(/^##\s+(.+)$/gm,'<h3>$1</h3>')
@@ -438,8 +496,7 @@ function fmt(t){
   const blocks=h.split(/\n{2,}/);
   h=blocks.map(b=>{
     b=b.trim();if(!b)return'';
-    if(b.startsWith('<h3>'))return b;
-    if(b.startsWith('<table>'))return b;
+    if(b.startsWith('<h3>')||b.startsWith('<table>'))return b;
     const lines=b.split('\n');
     const allList=lines.every(l=>/^[-•*]\s/.test(l.trim())||/^\d+\.\s/.test(l.trim()));
     if(allList&&lines.length>0)return'<ul>'+lines.map(l=>'<li>'+l.replace(/^[-•*\d.]+\s+/,'')+'</li>').join('')+'</ul>';
@@ -472,16 +529,9 @@ function dtags(t){
 }
 
 function clearChat(){
-  hist=[];
-  msgsEl.innerHTML='';
-  clearQR();
-  const w=document.createElement('div');
-  w.className='welcome';w.id='welcome';
-  if(activeTab==='sme'){
-    w.innerHTML='<div class="w-icon">🦆</div><div class="w-ttl">SME F&B <span>Demo</span> ready</div><div class="w-sub">Si Ji Min Fu · ION Orchard · Sompo Spectra F&B<br>Click <strong style="color:var(--gold)">▶ Start SME Discovery</strong> in the sidebar to begin the guided Q&A, or jump to any topic.</div>';
-  } else {
-    w.innerHTML='<div class="w-icon">✈️</div><div class="w-ttl">Travel <span>Demo</span> ready</div><div class="w-sub">7-step Japan family travel scenario. Run from the sidebar or ask any travel insurance question.</div>';
-  }
+  hist=[];msgsEl.innerHTML='';
+  const w=document.createElement('div');w.className='welcome';w.id='welcome';
+  w.innerHTML='<div class="w-icon">🧭</div><div class="w-ttl">GI <span>Co-Pilot</span> is ready</div><div class="w-sub">SME F&amp;B demo loaded. Run the 6-step Si Ji Min Fu ION Orchard sequence, or ask any GI question.</div><div class="w-grid"><div class="w-card" onclick="qs(\'My client is planning a family trip to Japan for 10 days. What travel insurance should I recommend?\')"><div class="wci">✈️</div><div class="wct">Start demo — Step 1</div><div class="wcd">Family trip to Japan scenario.</div></div><div class="w-card" onclick="qs(\'What discovery questions should I ask before recommending travel insurance?\')"><div class="wci">🔍</div><div class="wct">Discovery questions</div><div class="wcd">What to ask the client first.</div></div><div class="w-card" onclick="qs(\'My client has a pre-existing heart condition. Can they still get travel insurance?\')"><div class="wci">❤️</div><div class="wct">Pre-existing condition</div><div class="wcd">What to advise the client.</div></div><div class="w-card" onclick="qs(\'My client had a medical emergency overseas in Japan. What is the claims process?\')"><div class="wci">🚑</div><div class="wct">Live claim scenario</div><div class="wcd">Medical emergency overseas.</div></div></div>';
   msgsEl.appendChild(w);
 }
 
@@ -498,110 +548,111 @@ document.querySelectorAll('.cap').forEach(c=>{
   });
 });
 
-
-
-function showQR(replies){
-  const wrap=document.getElementById('qr-wrap');
-  wrap.innerHTML='';
-  replies.forEach(r=>{
-    const btn=document.createElement('button');
-    btn.className='qr-btn';
-    btn.textContent=r;
-    btn.onclick=()=>{
-      wrap.innerHTML='';
-      ui.value=r;
-      ar(ui);
-      send();
-    };
-    wrap.appendChild(btn);
-  });
-}
-
-function startSMEDemo(){
-  switchDemo('sme');
-  smeStep=0;
-  setTimeout(()=>{ fireQuestion(0); }, 200);
-}
-
+const smeQuestions=["Great \u2014 let's build the right insurance programme for your client. First question: **what type of business is this, and where is the premises located?**", "Got it. Next \u2014 **what is the estimated reinstatement value of the renovation and fit-out? And does the tenancy agreement require any minimum building coverage?**", "Noted. Now \u2014 **how many staff does the client have, and how would you break them down by role?** For example, management, kitchen, or service staff.", "Good. **What are the approximate annual earnings for each staff category?** I need this to calculate the WICA premium accurately.", "Perfect. **What is the client's estimated monthly revenue?** This helps me size the Business Interruption exposure.", "Understood. **Does the client handle heavy cash? And how many staff do you want to cover under Fidelity Guarantee?**", "Almost there \u2014 last one. **Any previous claims in the past 3 years? And is the premises a standard building or light industrial area?**"];
+const smeReplies=[["It's a Peking Duck restaurant \u2014 Si Ji Min Fu. Opening a 5,000 sqft flagship at ION Orchard, Singapore.", "F&B restaurant. Premium mall location, ION Orchard, Orchard Road."], ["Renovation and fit-out is SGD 1.5 million. The ION Orchard tenancy requires minimum SGD 2 million Fire & Perils on the building.", "Reno SGD 1.5M. Landlord requires at least SGD 2M building cover under the lease."], ["30 staff total \u2014 5 management and admin (non-manual), plus 25 manual: kitchen, chefs, and front-of-house service staff.", "30 headcount. 5 managers non-manual, 25 manual \u2014 kitchen and service staff."], ["5 managers at SGD 40,000 annual earnings each. The 25 manual staff \u2014 kitchen and service \u2014 at SGD 125,000 each.", "Managers SGD 40k annual each. Kitchen and service staff SGD 125k annual each."], ["Monthly revenue estimated at SGD 350,000 \u2014 roughly SGD 11,667 per day.", "SGD 350,000 per month estimated revenue."], ["Yes, heavy cash. I want 10 cash-handling staff under Fidelity. Max Public Liability for the ION Orchard footfall.", "Heavy cash. Fidelity for 10 staff. Max Public Liability."], ["No claims in the past 3 years. Standard concrete building \u2014 not pre-war, not light industrial.", "Clean loss record. Standard building, not light industrial."]];
 let smeStep=0;
-const smeQuestions=['What type of business is this, and where is the premises located?', 'What is the estimated reinstatement value of the renovation and fit-out? And does the tenancy agreement require any minimum building coverage?', 'How many staff does the client have — and how would you break them down by role? For example, management, kitchen, or service staff?', 'What are the approximate annual earnings for each staff category? I need this to calculate the WICA premium accurately.', "What is the client's estimated monthly revenue? This helps me size the Business Interruption exposure.", 'Does the client handle heavy cash? And how many staff do you want to cover under Fidelity Guarantee?', 'Last question — any previous claims in the past 3 years? And is the premises a standard building or light industrial area?'];
-const smeReplies=[["It's a Peking Duck restaurant — Si Ji Min Fu. Opening a 5,000 sqft flagship at ION Orchard, Singapore.", 'F&B restaurant. Premium mall location, ION Orchard, Orchard Road.'], ['Renovation and fit-out is SGD 1.5 million. The ION Orchard tenancy requires minimum SGD 2 million Fire & Perils on the building.', 'Reno SGD 1.5M. Landlord requires at least SGD 2M building cover under the lease.'], ['30 staff total. 5 are management and admin — non-manual. 25 are manual: kitchen, chefs, and front-of-house service and waitstaff.', '30 headcount. 5 managers non-manual, 25 manual — kitchen and service staff.'], ['The 5 managers earn SGD 40,000 per year each. The 25 manual staff — kitchen and service — earn SGD 125,000 per year each.', 'Managers SGD 40k annual each. Kitchen and service staff SGD 125k annual each.'], ['Monthly revenue estimated at SGD 350,000. So roughly SGD 4.2 million annually — about SGD 11,667 per day.', 'SGD 350,000 per month estimated revenue.'], ['Yes, heavy cash handling. I want 10 cash-handling staff under Fidelity. Public Liability should be maximum given the footfall at ION Orchard.', 'Heavy cash. Fidelity for 10 staff. Max Public Liability for the mall location.'], ['No claims in the past 3 years. Standard concrete building — not pre-war, not light industrial.', 'Clean loss record. Standard building, not light industrial.']];
-
-function fireQuestion(idx){
-  if(idx>=smeQuestions.length) return;
-  const q=smeQuestions[idx];
-  // Add as assistant message (question bubble)
-  hist.push({role:'assistant',content:q});
-  addMsg('assistant',q);
-  // Show FC reply options
-  showQR(smeReplies[idx], idx);
-  scrl();
-}
-
-function showQR(replies, stepIdx){
-  const wrap=document.getElementById('qr-wrap');
-  wrap.innerHTML='';
-  replies.forEach(r=>{
-    const btn=document.createElement('button');
-    btn.className='qr-btn';
-    btn.textContent=r;
-    btn.onclick=()=>{
-      wrap.innerHTML='';
-      submitFCReply(r, stepIdx);
-    };
-    wrap.appendChild(btn);
-  });
-}
-
-async function submitFCReply(text, stepIdx){
-  // Show FC message
-  hist.push({role:'user',content:text});
-  addMsg('user',text);
-  smeStep=stepIdx+1;
-  // Show typing
-  const typ=addTyping();
-  loading=true;
-  ui.disabled=true;
-  document.getElementById('sb').disabled=true;
-  try{
-    const r=await fetch(API_URL,{
-      method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':_k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:1500,system:SYS_SME,messages:hist})
-    });
-    const d=await r.json();
-    const rep=d.content?.find(b=>b.type==='text')?.text||'Sorry, no response received.';
-    hist.push({role:'assistant',content:rep});
-    typ.remove();
-    addMsg('assistant',rep);
-    scrl();
-    // Fire next question as separate bubble after short pause
-    if(smeStep < smeQuestions.length){
-      setTimeout(()=>{ fireQuestion(smeStep); }, 1200);
-    }
-  }catch(e){
-    typ.remove();
-    addMsg('assistant','Connection issue. Please try again.');
-    hist.pop();
-  }
-  loading=false;
-  ui.disabled=false;
-  document.getElementById('sb').disabled=ui.value.trim()==='';
-}
-
-function clearQR(){
-  const w=document.getElementById('qr-wrap');
-  if(w) w.innerHTML='';
-}
 
 function switchDemo(t){
-  activeTab=t;
-  smeStep=0;
+  activeTab=t;smeStep=0;
   document.querySelectorAll('.dtab').forEach(el=>el.classList.remove('active'));
   document.getElementById('dtab-'+t).classList.add('active');
   document.getElementById('sb-travel').style.display=t==='travel'?'block':'none';
   document.getElementById('sb-sme').style.display=t==='sme'?'block':'none';
-  clearChat();
+  hist=[];loading=false;
+  msgsEl.innerHTML='';
+  document.getElementById('qr-area').innerHTML='';
+  const w=document.getElementById('welcome');
+  if(w){
+    w.style.display='flex';
+    if(t==='sme'){
+      w.querySelector('.w-icon').textContent='🦆';
+      w.querySelector('.w-ttl').innerHTML='SME F&B <span>Demo</span> ready';
+      w.querySelector('.w-sub').textContent='Si Ji Min Fu · ION Orchard · Click Start SME Discovery in the sidebar to begin.';
+    } else {
+      w.querySelector('.w-icon').textContent='🧭';
+      w.querySelector('.w-ttl').innerHTML='GI <span>Co-Pilot</span> is ready';
+      w.querySelector('.w-sub').textContent='Board demo loaded. Run the 7-step Travel Insurance sequence from the sidebar, or ask any GI question.';
+    }
+  }
+}
+
+function startSMEDemo(){
+  if(activeTab!=='sme') switchDemo('sme');
+  smeStep=0;hist=[];loading=false;
+  msgsEl.innerHTML='';
+  document.getElementById('qr-area').innerHTML='';
+  setTimeout(()=>fireQ(0),200);
+}
+
+function fireQ(idx){
+  if(idx>=smeQuestions.length)return;
+  const q=smeQuestions[idx];
+  hist.push({role:'assistant',content:q});
+  addMsg('assistant',q);
+  scrl();
+  showQR(smeReplies[idx],idx);
+}
+
+function showQR(replies,stepIdx){
+  const area=document.getElementById('qr-area');
+  area.innerHTML='';
+  replies.forEach(r=>{
+    const btn=document.createElement('button');
+    btn.className='qr-btn';btn.textContent=r;
+    btn.onclick=()=>{area.innerHTML='';fcReply(r,stepIdx);};
+    area.appendChild(btn);
+  });
+}
+
+async function fcReply(text,stepIdx){
+  if(loading)return;
+  hist.push({role:'user',content:text});
+  addMsg('user',text);
+  smeStep=stepIdx+1;
+  const typ=addTyping();
+  loading=true;sb.disabled=true;
+  try{
+    const r=await fetch(API_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':_k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:600,system:SYS_SME,messages:hist})
+    });
+    const d=await r.json();
+    const rep=d.content?.find(b=>b.type==='text')?.text||'Sorry, no response.';
+    hist.push({role:'assistant',content:rep});
+    typ.remove();addMsg('assistant',rep);scrl();
+    if(smeStep<smeQuestions.length){
+      setTimeout(()=>fireQ(smeStep),1000);
+    } else {
+      // Fire final recommendation
+      setTimeout(()=>getFinalRec(),1000);
+    }
+  }catch(e){
+    typ.remove();addMsg('assistant','Connection issue. Please try again.');
+    hist.pop();
+  }
+  loading=false;sb.disabled=ui.value.trim()==='';
+}
+
+async function getFinalRec(){
+  const prompt='GENERATE_FINAL_RECOMMENDATION';
+  hist.push({role:'user',content:prompt});
+  const typ=addTyping();loading=true;sb.disabled=true;
+  try{
+    const r=await fetch(API_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':_k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:2000,system:SYS_SME,messages:hist})
+    });
+    const d=await r.json();
+    const rep=d.content?.find(b=>b.type==='text')?.text||'Sorry, no response.';
+    hist.push({role:'assistant',content:rep});
+    typ.remove();addMsg('assistant',rep);scrl();
+  }catch(e){
+    typ.remove();addMsg('assistant','Connection issue. Please try again.');
+    hist.pop();
+  }
+  loading=false;sb.disabled=ui.value.trim()==='';
 }
 </script>
 </body>
